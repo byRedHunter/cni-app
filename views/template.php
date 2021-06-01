@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo COLEGIO ?></title>
+  <link rel="shortcut icon" href="<?php echo SERVERURL; ?>views/assets/images/logo.png" type="image/x-icon">
 
   <?php
     include_once "./views/components/styles.php";
