@@ -20,7 +20,32 @@
         <span>IE. CNI - Imperial</span>
       </a>
 
-      <ul class="nav-menu"></ul>
+      <ul class="nav-menu">
+        <figure class="nav-menu-logo">
+          <img src="<?php echo SERVERURL ?>views/assets/images/logo.jpg" alt="I.E. CNI Imperial">
+        </figure>
+
+        <li class="nav-menu-item">
+          <a href="<?php echo SERVERURL ?>#about"><i class="fa fa-users"></i> Quienes somos</a>
+        </li>
+        
+        <li class="nav-menu-item">
+          <a href="<?php echo SERVERURL ?>#gallery"><i class="fa fa-camera"></i> Galleria</a>
+        </li>
+        
+        <li class="nav-menu-item">
+          <a href="<?php echo SERVERURL ?>#request"><i class="fa fa-file"></i> Tramites</a>
+        </li>
+
+        <li class="nav-menu-social">
+          <a href="#" class="flex-center"><i class="fab fa-facebook"></i> </a>
+          <a href="#" class="flex-center"><i class="fab fa-youtube"></i> </a>
+        </li>
+
+        <div class="nav-icon-menu flex-center">
+          <i class="fa fa-times"></i>
+        </div>
+      </ul>
 
       <div class="nav-icon-menu flex-center">
         <i class="fa fa-bars"></i>
@@ -44,7 +69,7 @@
 
   <section class="slider-item">
     <figure class="slider-item-bg">
-      <img src="<?php echo SERVERURL ?>views/assets/images/colegio_entrada.jpg" alt="Entrada del colegio CNI, imperial">
+      <img src="<?php echo SERVERURL ?>views/assets/images/gallery/estadio.jpg" alt="Entrada del colegio CNI, imperial">
     </figure>
 
     <div class="slider-item-content content">
@@ -56,7 +81,7 @@
 
   <section class="slider-item">
     <figure class="slider-item-bg">
-      <img src="<?php echo SERVERURL ?>views/assets/images/colegio_entrada.jpg" alt="Entrada del colegio CNI, imperial">
+      <img src="<?php echo SERVERURL ?>views/assets/images/gallery/danzas.jpg" alt="Entrada del colegio CNI, imperial">
     </figure>
 
     <div class="slider-item-content content">
@@ -68,7 +93,7 @@
 
   <section class="slider-item">
     <figure class="slider-item-bg">
-      <img src="<?php echo SERVERURL ?>views/assets/images/colegio_entrada.jpg" alt="Entrada del colegio CNI, imperial">
+      <img src="<?php echo SERVERURL ?>views/assets/images/gallery/marcha.jpg" alt="Entrada del colegio CNI, imperial">
     </figure>
 
     <div class="slider-item-content content">
@@ -86,7 +111,7 @@
   </section>
 </main>
 
-<section class="about">
+<section class="about" id="about">
   <div class="content">
     <h2>Quiénes Somos</h2>
 
@@ -106,7 +131,7 @@
   </div>
 </section>
 
-<section class="gallery">
+<section class="gallery" id="gallery">
   <div class="content">
     <h2>Galeria</h2>
 
@@ -114,63 +139,63 @@
       <figure>
         <img src="<?php echo SERVERURL; ?>views/assets/images/gallery/computo.jpg" alt="">
         <figcaption>
-          Daytona Beach
+          Aula de Computación
         </figcaption>
       </figure>
 
       <figure>
         <img src="<?php echo SERVERURL; ?>views/assets/images/gallery/marcha.jpg" alt="">
         <figcaption>
-          Daytona Beach
+          Fiestas Patrias
         </figcaption>
       </figure>
 
       <figure>
         <img src="<?php echo SERVERURL; ?>views/assets/images/gallery/clases.jpg" alt="">
         <figcaption>
-          Daytona Beach
+          Salón de Clases
         </figcaption>
       </figure>
 
       <figure>
         <img src="<?php echo SERVERURL; ?>views/assets/images/gallery/ajedrez.jpg" alt="">
         <figcaption>
-          Daytona Beach
+          Taller de Ajedrez
         </figcaption>
       </figure>
 
       <figure>
         <img src="<?php echo SERVERURL; ?>views/assets/images/gallery/ciclismo.jpg" alt="">
         <figcaption>
-          Daytona Beach
+          Deportes - Ciclismo
         </figcaption>
       </figure>
 
       <figure>
         <img src="<?php echo SERVERURL; ?>views/assets/images/gallery/banda.jpg" alt="">
         <figcaption>
-          Daytona Beach
+          Banda Institucional
         </figcaption>
       </figure>
 
       <figure>
         <img src="<?php echo SERVERURL; ?>views/assets/images/gallery/estadio.jpg" alt="">
         <figcaption>
-          Daytona Beach
+          Estadio CNI
         </figcaption>
       </figure>
 
       <figure>
         <img src="<?php echo SERVERURL; ?>views/assets/images/gallery/danzas.jpg" alt="">
         <figcaption>
-          Daytona Beach
+          Danzas
         </figcaption>
       </figure>
 
       <figure>
         <img src="<?php echo SERVERURL; ?>views/assets/images/gallery/lozas.jpg" alt="">
         <figcaption>
-          Daytona Beach
+          Deportes - Lozas CNI
         </figcaption>
       </figure>
     </div>
@@ -194,6 +219,12 @@
         <img src="<?php echo SERVERURL ?>views/assets/images/peru_educa.png" alt="PeruEduca">
       </a>
     </div>
+  </div>
+</section>
+
+<section class="request" id="request">
+  <div class="content">
+    <h3>seccion para enviar solicitudes para la mesa de partes</h3>
   </div>
 </section>
 
