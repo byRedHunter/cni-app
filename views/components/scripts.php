@@ -1,0 +1,1 @@
+<script src="<?php echo SERVERURL ?>views/assets/js/landing.js"></script>
