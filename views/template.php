@@ -23,18 +23,20 @@
     } else {
   ?>
 
-  <main class="main-container">
-    <?php
-      include "./views/components/sidebar.php";
-    ?>
-
-    <section class="full-box page-content">
+  <div class="dashboard">
+    <main class="main-container">
       <?php
-        include_once "./views/components/navbar.php";
-        include $page;
+        include "./views/components/sidebar.php";
       ?>
-    </section>
-  </main>
+
+      <section class="full-box page-content">
+        <?php
+          include_once "./views/components/navbar.php";
+          include $page;
+        ?>
+      </section>
+    </main>
+  </div>
 
   <?php
     }

@@ -1,5 +1,16 @@
 const sliderItem = document.querySelectorAll('.slider-item')
 const sliderControl = document.querySelectorAll('.slider-control-item')
+const navMenu = document.querySelector('.nav-menu')
+const navIconMenu = document.querySelectorAll('.nav-icon-menu')
+
+const toggleMenu = () => {
+	navMenu.classList.toggle('active')
+}
+navIconMenu.forEach((icon) => {
+	icon.addEventListener('click', () => {
+		toggleMenu(icon)
+	})
+})
 
 const totalSliders = sliderItem.length - 1
 let sliderActual = null
@@ -16,13 +27,16 @@ const sliderStart = () => {
 	})
 
 	if (sliderActual > totalSliders) sliderActual = 0
+
 	sliderItem[sliderActual].classList.add('active')
 	sliderControl[sliderActual].classList.add('active')
 }
 
 window.onload = () => {
 	sliderInterval = setInterval(() => {
-		sliderStart()
+		if (document.querySelectorAll('.slider-item').length > 0) {
+			sliderStart()
+		}
 	}, 7000)
 
 	sliderControl.forEach((control, actual) => {
