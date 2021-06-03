@@ -8,6 +8,7 @@
 
 html {
 	font-size: 62.5%;
+	scroll-behavior: smooth;
 }
 
 :root {
@@ -21,6 +22,9 @@ html {
 	--color-grey: #dadada;
 	--color-light: #eee;
 	--color-dark: #050505;
+	--color-blue: #06368b;
+	--color-green: #00bd56;
+	--color-yellow: #ffd700;
 }
 
 body {
