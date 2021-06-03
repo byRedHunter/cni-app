@@ -1,5 +1,5 @@
-/* $(document).ready(function () {
-	// Show/Hidden Submenus 
+$(document).ready(function () {
+	// Show/Hidden Submenus
 	$('.nav-btn-submenu').on('click', function (e) {
 		e.preventDefault()
 		var SubMenu = $(this).next('ul')
@@ -68,4 +68,3 @@
 $(function () {
 	$('[data-toggle="popover"]').popover()
 })
- */

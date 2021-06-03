@@ -1,4 +1,23 @@
+<!--=============================================
+=            Include JavaScript files           =
+==============================================-->
+<!-- jQuery V3.4.1 -->
+<script src="<?php echo SERVERURL; ?>views/assets/js/jquery-3.4.1.min.js" ></script>
+
+<!-- popper -->
+<script src="<?php echo SERVERURL; ?>views/assets/js/popper.min.js" ></script>
+
+<!-- Bootstrap V4.3 -->
+<script src="<?php echo SERVERURL; ?>views/assets/js/bootstrap.min.js" ></script>
+
+<!-- jQuery Custom Content Scroller V3.1.5 -->
+<script src="<?php echo SERVERURL; ?>views/assets/js/jquery.mCustomScrollbar.concat.min.js" ></script>
+
+<!-- Bootstrap Material Design V4.0 -->
+<script src="<?php echo SERVERURL; ?>views/assets/js/bootstrap-material-design.min.js" ></script>
+<script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+
+<!-- landing -->
 <script src="<?php echo SERVERURL ?>views/assets/js/landing.js"></script>
-<!-- bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<!-- dashboard -->
 <script src="<?php echo SERVERURL ?>views/assets/js/dashboard.js"></script>
