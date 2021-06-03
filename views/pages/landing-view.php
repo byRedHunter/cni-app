@@ -1,58 +1,6 @@
-<header class="header">
-  <section class="header-info">
-    <div class="content">
-      <p class="info-phone">
-        <i class="fa fa-phone flex-center"></i> 958 - 964 -958
-      </p>
-      <p class="info-direction">
-        <i class="fa fa-map-marker-alt flex-center"></i> Av. 2 de Mayo
-      </p>
-      <p class="info-direction">
-        <i class="fa fa-envelope flex-center"></i> info@cni.com
-      </p>
-    </div>
-  </section>
-
-  <nav class="header-nav">
-    <div class="content">
-      <a href="<?php echo SERVERURL ?>" class="nav-logo">
-        <img src="<?php echo SERVERURL ?>views/assets/images/logo.jpg" alt="I.E. CNI Imperial">
-        <span>IE. CNI - Imperial</span>
-      </a>
-
-      <ul class="nav-menu">
-        <figure class="nav-menu-logo">
-          <img src="<?php echo SERVERURL ?>views/assets/images/logo.jpg" alt="I.E. CNI Imperial">
-        </figure>
-
-        <li class="nav-menu-item">
-          <a href="<?php echo SERVERURL ?>#about"><i class="fa fa-users"></i> Quienes somos</a>
-        </li>
-        
-        <li class="nav-menu-item">
-          <a href="<?php echo SERVERURL ?>#gallery"><i class="fa fa-camera"></i> Galleria</a>
-        </li>
-        
-        <li class="nav-menu-item">
-          <a href="<?php echo SERVERURL ?>#request"><i class="fa fa-file"></i> Tramites</a>
-        </li>
-
-        <li class="nav-menu-social">
-          <a href="#" class="flex-center"><i class="fab fa-facebook"></i> </a>
-          <a href="#" class="flex-center"><i class="fab fa-youtube"></i> </a>
-        </li>
-
-        <div class="nav-icon-menu flex-center">
-          <i class="fa fa-times"></i>
-        </div>
-      </ul>
-
-      <div class="nav-icon-menu flex-center">
-        <i class="fa fa-bars"></i>
-      </div>
-    </div>
-  </nav>
-</header>
+<?php
+  include_once "./views/components/header-landing.php";
+?>
 
 <main class="slider">
   <section class="slider-item active">
@@ -202,36 +150,6 @@
   </div>
 </section>
 
-<section class="links">
-  <div class="content">
-    <h2>Enlaces Interesantes</h2>
-
-    <div class="links-list">
-      <a href="http://siagie.minedu.gob.pe/" target="_blank">
-        <img src="<?php echo SERVERURL ?>views/assets/images/siagie.png" alt="Siagie">
-      </a>
-
-      <a href="https://www.pronabec.gob.pe/beca-18-2021/" target="_blank">
-        <img src="<?php echo SERVERURL ?>views/assets/images/pronabec.png" alt="Pronabec">
-      </a>
-
-      <a href="http://www.perueduca.pe/" target="_blank">
-        <img src="<?php echo SERVERURL ?>views/assets/images/peru_educa.png" alt="PeruEduca">
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="request" id="request">
-  <div class="content">
-    <h3>seccion para enviar solicitudes para la mesa de partes</h3>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="content">
-    <p class="text-center">
-      Copyright &copy; 2021 I.E. CNI Imperial | Developed with 💚 byRedHunter
-    </p>
-  </div>
-</footer>
+<?php
+  include_once "./views/components/footer-landing.php";
+?>

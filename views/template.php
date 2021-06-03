@@ -18,7 +18,7 @@
     $viewController = new ViewController();
     $page = $viewController->getViewController();
 
-    if($page == "landing" || $page == "404" || $page =="login") {
+    if($page == "landing" || $page == "404" || $page =="login" || $page =="library" || $page =="procedure") {
       require_once "./views/pages/" . $page . "-view.php";
     } else {
   ?>
