@@ -11,7 +11,7 @@
     <div class="slider-item-content content">
       <h1>IE. CNI Imperial</h1>
       <div class="label">Honor, gallardia y disciplina</div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi commodi sint voluptas perferendis nisi aut voluptates. Commodi quos nobis inventore.</p>
+      
     </div>
   </section>
 
@@ -23,7 +23,7 @@
     <div class="slider-item-content content">
       <h1>Deportes</h1>
       <div class="label">Fortalece el alma</div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi commodi sint voluptas perferendis nisi aut voluptates. Commodi quos nobis inventore.</p>
+      
     </div>
   </section>
 
@@ -35,7 +35,7 @@
     <div class="slider-item-content content">
       <h1>Taller de danzas</h1>
       <div class="label">Otra forma de ejercitarte.</div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi commodi sint voluptas perferendis nisi aut voluptates. Commodi quos nobis inventore.</p>
+      
     </div>
   </section>
 
@@ -47,7 +47,7 @@
     <div class="slider-item-content content">
       <h1>Concurso de matemáticas</h1>
       <div class="label">Otra forma de ejercitarte.</div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi commodi sint voluptas perferendis nisi aut voluptates. Commodi quos nobis inventore.</p>
+      
     </div>
   </section>
 
