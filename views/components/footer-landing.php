@@ -6,15 +6,15 @@
 
     <div class="links-list">
       <a href="http://siagie.minedu.gob.pe/" target="_blank">
-        <img src="<?php echo SERVERURL ?>views/assets/images/siagie.png" alt="Siagie">
+        <img src="<?php echo SERVERURL ?>views/assets/images/enlaces/siagie.png" alt="Siagie">
       </a>
 
       <a href="https://www.pronabec.gob.pe/beca-18-2021/" target="_blank">
-        <img src="<?php echo SERVERURL ?>views/assets/images/pronabec.png" alt="Pronabec">
+        <img src="<?php echo SERVERURL ?>views/assets/images/enlaces/pronabec.png" alt="Pronabec">
       </a>
 
       <a href="http://www.perueduca.pe/" target="_blank">
-        <img src="<?php echo SERVERURL ?>views/assets/images/peru_educa.png" alt="PeruEduca">
+        <img src="<?php echo SERVERURL ?>views/assets/images/enlaces/peru_educa.png" alt="PeruEduca">
       </a>
     </div>
   </div>

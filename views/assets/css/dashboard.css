@@ -1,10 +1,10 @@
 :root {
 	--color-one: #f5f5f5;
 	--color-two: #24292e;
-	--color-three: #ec5252;
+	--color-three: #06368b;
 	/*--color-three: #0366D6;*/
 
-	--form-color: #14111a;
+	--form-color: #21094e;
 
 	--accent-color: #253556;
 	/*--accent-color: #455A64;*/
@@ -247,7 +247,7 @@ table form {
 }
 .nav-lateral-bar {
 	height: 3px;
-	background-color: var(--color-three);
+	background-color: var(--color-yellow);
 }
 .nav-lateral-avatar {
 	padding: 40px 0;
