@@ -184,7 +184,7 @@
 	color: var(--color-light);
 	font-weight: bold;
 	text-transform: uppercase;
-	text-shadow: 0 0 1rem var(--color-dark);
+	text-shadow: 0 0 2rem var(--color-dark);
 }
 .slider-item-content .label {
 	background: var(--color-blue);
@@ -227,9 +227,6 @@
 	.slider-item-content h1 {
 		font-size: 4.5rem;
 	}
-	.slider-item-content p {
-		width: 85%;
-	}
 }
 @media screen and (min-width: 800px) {
 	.slider-item-content {
@@ -237,9 +234,6 @@
 	}
 	.slider-item-content h1 {
 		font-size: 5rem;
-	}
-	.slider-item-content p {
-		width: 60rem;
 	}
 	.slider-control {
 		flex-direction: column;
@@ -253,10 +247,7 @@
 		font-size: 2.3rem;
 	}
 	.slider-item-content h1 {
-		font-size: 5.2rem;
-	}
-	.slider-item-content p {
-		width: 70rem;
+		font-size: 5rem;
 	}
 }
 @media screen and (min-width: 1200px) {
@@ -264,7 +255,7 @@
 		font-size: 2.5rem;
 	}
 	.slider-item-content h1 {
-		font-size: 6rem;
+		font-size: 5.5rem;
 	}
 }
 /* main - slider */

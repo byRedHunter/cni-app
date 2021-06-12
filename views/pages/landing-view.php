@@ -5,7 +5,7 @@
 <main class="slider">
   <section class="slider-item active">
     <figure class="slider-item-bg">
-      <img src="<?php echo SERVERURL ?>views/assets/images/colegio_entrada.jpg" alt="Entrada del colegio CNI, imperial">
+      <img src="<?php echo SERVERURL ?>views/assets/images/slider/slide_00.jpg" alt="Entrada del colegio CNI, imperial">
     </figure>
 
     <div class="slider-item-content content">
@@ -17,42 +17,60 @@
 
   <section class="slider-item">
     <figure class="slider-item-bg">
-      <img src="<?php echo SERVERURL ?>views/assets/images/gallery/estadio.jpg" alt="Entrada del colegio CNI, imperial">
+      <img src="<?php echo SERVERURL ?>views/assets/images/slider/slide_01.jpg" alt="Entrada del colegio CNI, imperial">
     </figure>
 
     <div class="slider-item-content content">
-      <h1>Deportes</h1>
-      <div class="label">Fortalece el alma</div>
-      
+      <h1>Taller de Musica</h1>
     </div>
   </section>
 
   <section class="slider-item">
     <figure class="slider-item-bg">
-      <img src="<?php echo SERVERURL ?>views/assets/images/gallery/danzas.jpg" alt="Entrada del colegio CNI, imperial">
+      <img src="<?php echo SERVERURL ?>views/assets/images/slider/slide_02.jpg" alt="Entrada del colegio CNI, imperial">
     </figure>
 
     <div class="slider-item-content content">
-      <h1>Taller de danzas</h1>
-      <div class="label">Otra forma de ejercitarte.</div>
-      
+      <h1>Taller de Ajedrez</h1>
+      <div class="label">Ejercita el cerebro.</div>
     </div>
   </section>
 
   <section class="slider-item">
     <figure class="slider-item-bg">
-      <img src="<?php echo SERVERURL ?>views/assets/images/gallery/marcha.jpg" alt="Entrada del colegio CNI, imperial">
+      <img src="<?php echo SERVERURL ?>views/assets/images/slider/slide_03.jpg" alt="Entrada del colegio CNI, imperial">
     </figure>
 
     <div class="slider-item-content content">
-      <h1>Concurso de matemáticas</h1>
-      <div class="label">Otra forma de ejercitarte.</div>
-      
+      <h1>Gloriosa Banda de Música</h1>
+    </div>
+  </section>
+
+  <section class="slider-item">
+    <figure class="slider-item-bg">
+      <img src="<?php echo SERVERURL ?>views/assets/images/slider/slide_04.jpg" alt="Entrada del colegio CNI, imperial">
+    </figure>
+
+    <div class="slider-item-content content">
+      <h1>Banda de Músicos</h1>
+      <div class="label">más de 60 alumnos</div>
+    </div>
+  </section>
+
+  <section class="slider-item">
+    <figure class="slider-item-bg">
+      <img src="<?php echo SERVERURL ?>views/assets/images/slider/slide_05.jpg" alt="Entrada del colegio CNI, imperial">
+    </figure>
+
+    <div class="slider-item-content content">
+      <h1>Más de 180 promociones egresadas</h1>
     </div>
   </section>
 
   <section class="slider-control">
     <div class="slider-control-item active"></div>
+    <div class="slider-control-item"></div>
+    <div class="slider-control-item"></div>
     <div class="slider-control-item"></div>
     <div class="slider-control-item"></div>
     <div class="slider-control-item"></div>
