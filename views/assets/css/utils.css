@@ -10,6 +10,32 @@
 	text-align: center;
 }
 
+.form-group {
+	margin-bottom: 2rem !important;
+}
+
+.bmd-label-floating {
+	color: var(--color-dark) !important;
+}
+.bmd-form-group .bmd-label-static,
+.bmd-form-group.is-filled .bmd-label-floating,
+.bmd-form-group .is-filled .bmd-label-floating,
+.bmd-form-group.is-focused .bmd-label-floating,
+.bmd-form-group .is-focused .bmd-label-floating {
+	top: 0.2rem;
+	left: 0;
+	font-size: 0.75rem;
+}
+.text-top {
+	top: 0.2rem !important;
+	left: 0 !important;
+	font-size: 0.75rem !important;
+}
+.text-blue {
+	color: var(--color-blue) !important;
+	font-weight: bold !important;
+}
+
 @media screen and (min-width: 800px) {
 	.content {
 		padding: 0 8%;

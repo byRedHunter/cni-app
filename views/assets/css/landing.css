@@ -391,6 +391,17 @@
 }
 /* links */
 
+/* title forms */
+.library {
+	background: var(--color-blue);
+	padding: 8rem 0;
+}
+.form-title {
+	color: var(--color-light);
+	font-size: 4.5rem;
+}
+/* title forms */
+
 /* footer */
 .footer {
 	background: var(--color-purple);
