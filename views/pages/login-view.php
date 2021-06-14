@@ -1,7 +1,7 @@
 <div class="login-container">
   <div class="login-content">
     <p class="text-center">
-      <i class="fas fa-user-circle fa-5x"></i>
+      <img src="<?php echo SERVERURL; ?>views/assets/images/logo.png" alt="Insignia CNI - Imperial">
     </p>
     <p class="text-center">
       Inicia sesión con tu cuenta

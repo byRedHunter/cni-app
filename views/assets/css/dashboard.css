@@ -168,13 +168,17 @@ table form {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #0575e6;
-	background: -webkit-linear-gradient(to right, #021b79, #0575e6);
-	background: linear-gradient(to right, #021b79, #0575e6);
+	background: var(--color-blue);
+	background: url('../images/slider/slide_00.jpg'),
+		linear-gradient(to right, var(--color-blue), var(--color-purple));
+	background-blend-mode: lighten;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 .login-content {
 	width: 95%;
-	max-width: 320px;
+	max-width: 380px;
 	height: auto;
 	border: 1px solid var(--border-color);
 	background-color: #fff;
