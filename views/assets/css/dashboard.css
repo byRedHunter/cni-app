@@ -153,13 +153,30 @@ table form {
 }
 /*----------  Page 404 styles  ----------*/
 .container-404 {
-	background: #000428;
-	background: linear-gradient(to right, #004e92, #000428);
-	color: #fff;
+	width: 100vw;
 	height: 100vh;
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
+	background: var(--color-blue);
+	background: url('../images/slider/slide_00.jpg'),
+		linear-gradient(to right, var(--color-blue), var(--color-purple));
+	background-blend-mode: lighten;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.content-404 {
+	background: rgba(255, 255, 255, 0.8);
+	width: 90%;
+	max-width: 45rem;
+	padding: 4rem 0;
+	border-radius: 0.8rem;
+}
+.container-404 a {
+	display: block;
+	margin: 0 auto;
+	margin-top: 4rem;
 }
 /*----------  login Styles  ----------*/
 .login-container {

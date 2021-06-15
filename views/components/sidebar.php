@@ -5,7 +5,7 @@
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="<?php echo SERVERURL; ?>views/assets/images/Avatar.png" class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
-						Carlos Alfaro <br><small class="roboto-condensed-light">Web Developer</small>
+						Jhonny Quispe <br><small class="roboto-condensed-light">Administrador</small>
 					</figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar"></div>
@@ -16,52 +16,34 @@
 						</li>
 
 						<li>
-							<a href="#" class="nav-btn-submenu"><i class="fas fa-users fa-fw"></i> &nbsp; Clientes <i class="fas fa-chevron-down"></i></a>
+							<a href="#" class="nav-btn-submenu"><i class="fas fa-book fa-fw"></i> &nbsp; Biblioteca <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="<?php echo SERVERURL; ?>client-new"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Cliente</a>
+									<a href="<?php echo SERVERURL; ?>book-reservation"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de reservas</a>
 								</li>
 								<li>
-									<a href="<?php echo SERVERURL; ?>client-list"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de clientes</a>
+									<a href="<?php echo SERVERURL; ?>book-new"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar libro</a>
 								</li>
 								<li>
-									<a href="<?php echo SERVERURL; ?>client-search"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar cliente</a>
+									<a href="<?php echo SERVERURL; ?>book-list"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de libros</a>
+								</li>
+								<li>
+									<a href="<?php echo SERVERURL; ?>book-search"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar libro</a>
 								</li>
 							</ul>
 						</li>
 
 						<li>
-							<a href="#" class="nav-btn-submenu"><i class="fas fa-pallet fa-fw"></i> &nbsp; Items <i class="fas fa-chevron-down"></i></a>
+							<a href="#" class="nav-btn-submenu"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Mesa de Partes <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="<?php echo SERVERURL; ?>item-new"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar item</a>
+									<a href="<?php echo SERVERURL; ?>desk-recents"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Solicitudes nuevas</a>
 								</li>
 								<li>
-									<a href="<?php echo SERVERURL; ?>item-list"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de items</a>
+									<a href="<?php echo SERVERURL; ?>desk-list"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de solicitudes</a>
 								</li>
 								<li>
-									<a href="<?php echo SERVERURL; ?>item-search"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar item</a>
-								</li>
-							</ul>
-						</li>
-
-						<li>
-							<a href="#" class="nav-btn-submenu"><i class="fas fa-file-invoice-dollar fa-fw"></i> &nbsp; Préstamos <i class="fas fa-chevron-down"></i></a>
-							<ul>
-								<li>
-									<a href="<?php echo SERVERURL; ?>reservation-new"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo préstamo</a>
-								</li>
-								<li>
-									<a href="<?php echo SERVERURL; ?>reservation-reservation"><i class="far fa-calendar-alt fa-fw"></i> &nbsp; Reservaciones</a>
-								</li>
-								<li>
-									<a href="<?php echo SERVERURL; ?>reservation-pending"><i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; Préstamos</a>
-								</li>
-								<li>
-									<a href="<?php echo SERVERURL; ?>reservation-list"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Finalizados</a>
-								</li>
-								<li>
-									<a href="<?php echo SERVERURL; ?>reservation-search"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; Buscar por fecha</a>
+									<a href="<?php echo SERVERURL; ?>desk-search"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar Solicitud</a>
 								</li>
 							</ul>
 						</li>
@@ -79,10 +61,6 @@
 									<a href="<?php echo SERVERURL; ?>user-search"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar usuario</a>
 								</li>
 							</ul>
-						</li>
-
-						<li>
-							<a href="<?php echo SERVERURL; ?>company"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Empresa</a>
 						</li>
 					</ul>
 				</nav>
