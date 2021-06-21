@@ -11,7 +11,6 @@
     <div class="slider-item-content content">
       <h1>IE. CNI Imperial</h1>
       <div class="label">Honor, gallardia y disciplina</div>
-      
     </div>
   </section>
 
@@ -67,8 +66,19 @@
     </div>
   </section>
 
+  <section class="slider-item">
+    <figure class="slider-item-bg">
+      <img src="<?php echo SERVERURL ?>views/assets/images/slider/slide_06.png" alt="Imponente estadio y pista atlética">
+    </figure>
+
+    <div class="slider-item-content content">
+      <h1>Imponente estadio y pista atlética</h1>
+    </div>
+  </section>
+
   <section class="slider-control">
     <div class="slider-control-item active"></div>
+    <div class="slider-control-item"></div>
     <div class="slider-control-item"></div>
     <div class="slider-control-item"></div>
     <div class="slider-control-item"></div>
@@ -95,6 +105,10 @@
       </div>
     </div>
   </div>
+</section>
+
+<section class="video-responsive">
+  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/uTyUflDOXQA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </section>
 
 <section class="gallery" id="gallery">

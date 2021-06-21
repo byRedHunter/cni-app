@@ -203,6 +203,9 @@ table form {
 	padding: 15px;
 	color: var(--accent-color);
 }
+.login-logo {
+	width: 50%;
+}
 .btn-login {
 	width: 90%;
 	padding: 10px 0;

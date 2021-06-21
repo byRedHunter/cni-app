@@ -1,5 +1,10 @@
 <header class="header">
   <section class="header-info">
+    <a href="<?php echo SERVERURL ?>" class="nav-logo">
+      <img src="<?php echo SERVERURL ?>views/assets/images/logo.png" alt="I.E. CNI Imperial">
+      <span>IE Imperial <strong>CNI</strong><br><small>"Honor, gallardía y disciplina"</small></span>
+    </a>
+
     <div class="content">
       <p class="info-phone">
         <i class="fa fa-phone flex-center"></i> 958 - 964 -958
@@ -15,11 +20,6 @@
 
   <nav class="header-nav">
     <div class="content">
-      <a href="<?php echo SERVERURL ?>" class="nav-logo">
-        <img src="<?php echo SERVERURL ?>views/assets/images/logo.jpg" alt="I.E. CNI Imperial">
-        <span>IE. CNI - Imperial</span>
-      </a>
-
       <ul class="nav-menu">
         <figure class="nav-menu-logo">
           <img src="<?php echo SERVERURL ?>views/assets/images/logo.jpg" alt="I.E. CNI Imperial">
@@ -44,6 +44,17 @@
         <li class="nav-menu-item">
           <a href="<?php echo SERVERURL ?>login"><i class="fa fa-database"></i> Sistema</a>
         </li>
+
+        <li class="nav-menu-item menu-nav-item">
+            <i class="fa fa-home"></i>
+						General
+						<i class="fa fa-angle-right angle-bottom"></i>
+						<div class="list-link">
+							<a href="#">Contact</a>
+							<a href="#">Newletter</a>
+							<a href="#">Linkedin</a>
+						</div>
+					</li>
 
         <li class="nav-menu-social">
           <a href="#" class="flex-center"><i class="fab fa-facebook"></i> </a>

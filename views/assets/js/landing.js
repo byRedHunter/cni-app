@@ -59,3 +59,15 @@ window.onload = () => {
 		})
 	})
 }
+
+const menuNavItem = document.querySelectorAll('.menu-nav-item')
+const listLink = document.querySelectorAll('.list-link')
+menuNavItem.forEach((item, indice) => {
+	item.addEventListener('click', () => {
+		showSubMenu(indice)
+	})
+})
+
+const showSubMenu = (indice) => {
+	listLink[indice].classList.toggle('active')
+}
