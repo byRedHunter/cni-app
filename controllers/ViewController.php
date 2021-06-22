@@ -12,7 +12,7 @@
         $view = explode("/", $_GET['view']);
         $response = ViewModel::getViewsModel($view[0]);
       } else {
-        $response = "landing";
+        $response = "login";
       }
 
       return $response;

@@ -9,10 +9,8 @@
         } else {
           $content = "404";
         }
-      } elseif($view == "login" || $view == "sistema") {
+      } elseif($view == "login" || $view == "sistema" || $view == "") {
         $content = "login";
-      } elseif($view == "index" || $view == "landing" || $view == "") {
-        $content = "landing";
       } elseif($view == "library" || $view == "biblioteca" || $view == "") {
         $content = "library";
       } elseif($view == "procedure" || $view == "solicitud" || $view == "") {

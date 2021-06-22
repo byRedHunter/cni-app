@@ -159,7 +159,7 @@ table form {
 	justify-content: center;
 	align-items: center;
 	background: var(--color-blue);
-	background: url('../images/slider/slide_00.jpg'),
+	background: url('../images/front.jpg'),
 		linear-gradient(to right, var(--color-blue), var(--color-purple));
 	background-blend-mode: lighten;
 	background-size: cover;
@@ -186,7 +186,7 @@ table form {
 	justify-content: center;
 	align-items: center;
 	background: var(--color-blue);
-	background: url('../images/slider/slide_00.jpg'),
+	background: url('../images/front.jpg'),
 		linear-gradient(to right, var(--color-blue), var(--color-purple));
 	background-blend-mode: lighten;
 	background-size: cover;

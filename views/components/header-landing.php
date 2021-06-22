@@ -24,14 +24,6 @@
         <figure class="nav-menu-logo">
           <img src="<?php echo SERVERURL ?>views/assets/images/logo.jpg" alt="I.E. CNI Imperial">
         </figure>
-
-        <li class="nav-menu-item">
-          <a href="<?php echo SERVERURL ?>#about"><i class="fa fa-users"></i> Quienes somos</a>
-        </li>
-        
-        <li class="nav-menu-item">
-          <a href="<?php echo SERVERURL ?>#gallery"><i class="fa fa-camera"></i> Galleria</a>
-        </li>
         
         <li class="nav-menu-item">
           <a href="<?php echo SERVERURL ?>solicitud"><i class="fa fa-file"></i> Tramites</a>
@@ -44,17 +36,6 @@
         <li class="nav-menu-item">
           <a href="<?php echo SERVERURL ?>login"><i class="fa fa-database"></i> Sistema</a>
         </li>
-
-        <li class="nav-menu-item menu-nav-item">
-            <i class="fa fa-home"></i>
-						General
-						<i class="fa fa-angle-right angle-bottom"></i>
-						<div class="list-link">
-							<a href="#">Contact</a>
-							<a href="#">Newletter</a>
-							<a href="#">Linkedin</a>
-						</div>
-					</li>
 
         <li class="nav-menu-social">
           <a href="#" class="flex-center"><i class="fab fa-facebook"></i> </a>
