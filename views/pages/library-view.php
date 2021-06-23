@@ -75,8 +75,15 @@
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="form-group">
+                <label for="libro-fecha" class="bmd-label-floating text-top">Fecha de Recojo</label>
+                <input type="date" name="libro-fecha-recojo" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="form-group">
                 <label for="libro-fecha" class="bmd-label-floating text-top">Fecha de Devolución</label>
-                <input type="date" class="form-control">
+                <input type="date" name="libro-fecha-devol" class="form-control">
               </div>
             </div>
           </div>

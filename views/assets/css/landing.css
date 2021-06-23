@@ -206,11 +206,11 @@ a.nav-logo span {
 
 /* title forms */
 .library {
-	background: var(--color-blue);
+	background: var(--color-light);
 	padding: 80px 0;
 }
 .form-title {
-	color: var(--color-light);
+	color: var(--color-blue);
 	font-size: 45px;
 }
 /* title forms */
