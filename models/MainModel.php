@@ -20,8 +20,19 @@
       return $sql;
     }
 
+    protected static function alertContent($alert = "simple", $title = "Algo salió mal.", $text, $type = "error") {
+      $alertJson = [
+        "alert" => $alert,
+        "title" => $title,
+        "text" => $text,
+        "type" => $type
+      ];
+
+      return $alertJson;
+    }
+
     /* encriptar cadenas */
-    public function encryption($string){
+    protected static function encryption($string){
 			$output = false;
 			$key = hash('sha256', SECRET_KEY);
 			$iv = substr(hash('sha256', SECRET_IV), 0, 16);
@@ -92,7 +103,7 @@
     }
 
     // verificar fechas
-    protected static function verificar_fecha($date) {
+    protected static function verificarDate($date) {
       $values = explode('-', $date);
 
       if(count($values) == 3 && checkdate($values[1], $values[2], $values[0])) {
@@ -103,7 +114,7 @@
     }
 
     // paginador de tablas
-    protected static function paginador_tablas($page, $numPages, $url, $buttons) {
+    protected static function paginationTables($page, $numPages, $url, $buttons) {
       $pagination = '<nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">';
 

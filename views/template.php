@@ -13,7 +13,7 @@
 </head>
 <body>
   <?php
-    $petitionAjax = false;
+    $ajaxRequest = false;
     require_once "./controllers/ViewController.php";
     $viewController = new ViewController();
     $page = $viewController->getViewController();

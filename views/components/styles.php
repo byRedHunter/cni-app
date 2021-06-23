@@ -10,9 +10,6 @@
 <!-- jQuery Custom Content Scroller V3.1.5 -->
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>views/assets/css/jquery.mCustomScrollbar.css">
 
-<!-- sweet alert -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.17/sweetalert2.min.css" integrity="sha512-fZ1HwrDVLoUUUDGK7gZdHJ4TIMQ9KnleLU/Jgf98v1nGz9umOciIbF3zs3R5stCIY/MVMqReXgUGnxOoWUdZDQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <!-- estilos globales -->
 <link rel="stylesheet" href="<?php echo SERVERURL ?>views/assets/css/global.css">
 <!-- utils -->

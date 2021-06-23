@@ -1,5 +1,5 @@
-<!-- Sweet Alert V8.13.0 JS file-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.17/sweetalert2.min.js" integrity="sha512-PECs0FDgx6coAK87ta7MM+8nQfT8jl21gfsXBegEWFqQzCyNtAilGNyyWM0Y8FXNpycZQU3A4QM6ZN0r3KXs5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Sweet Alert-->
+<script src="<?php echo SERVERURL; ?>views/assets/js/sweetalert2.all.min.js"></script>
 
 <!-- jQuery V3.4.1 -->
 <script src="<?php echo SERVERURL; ?>views/assets/js/jquery-3.4.1.min.js"></script>
@@ -21,3 +21,5 @@
 <script src="<?php echo SERVERURL ?>views/assets/js/landing.js"></script>
 <!-- dashboard -->
 <script src="<?php echo SERVERURL ?>views/assets/js/dashboard.js"></script>
+<!-- alert -->
+<script src="<?php echo SERVERURL ?>views/assets/js/alerts.js"></script>
