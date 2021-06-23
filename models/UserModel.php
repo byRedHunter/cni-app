@@ -4,7 +4,7 @@
   class UserModel extends MainModel {
     // agregar usuario a la DB
     protected static function addUserModel($datos) {
-      $query = MainModel::connect()->prepare("INSERT INTO user(dni, nombre, apellido, username, email, clave, privilegio, estado) VALUES (:dni, :nombre, :apellido, :username, :email, :clave, :privilegio, :estado)");
+      $query = MainModel::connect()->prepare("INSERT INTO usuario(dni, nombre, apellido, username, email, clave, privilegio, estado) VALUES (:dni, :nombre, :apellido, :username, :email, :clave, :privilegio, :estado)");
 
       $query->bindParam(":dni", $datos['dni']);
       $query->bindParam(":nombre", $datos['nombre']);

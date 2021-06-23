@@ -94,7 +94,7 @@
     }
 
     // verificar datos
-    protected static function verifyData($filter, $string) {
+    protected static function verifyInfo($filter, $string) {
       if(preg_match("/^" . $filter . "$/", $string)) {
         return false;
       }
@@ -103,7 +103,7 @@
     }
 
     // verificar fechas
-    protected static function verificarDate($date) {
+    protected static function verifyDate($date) {
       $values = explode('-', $date);
 
       if(count($values) == 3 && checkdate($values[1], $values[2], $values[0])) {
