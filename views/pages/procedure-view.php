@@ -7,8 +7,8 @@
     <h2 class="form-title mb-5">Mesa de Partes</h2>
 
 	  <form action="" class="form-landing form-neon py-5" autocomplete="off" style="overflow: hidden;">
-		  <fieldset>
-			  <legend class="text-dark mb-5 pl-4"><i class="fas fa-file"></i> &nbsp; Información de solicitud</legend>
+		  <fieldset class="mb-4">
+			  <legend class="text-dark mb-3 pl-4"><i class="fas fa-user"></i> &nbsp; Información personal</legend>
 			  <div class="container-fluid">
           <div class="row">
             <div class="col-12 col-md-6">
@@ -41,6 +41,32 @@
                 <input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="solicitud-telefono" id="solicitud-telefono" maxlength="20">
               </div>
             </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="mb-4">
+			  <legend class="text-dark mb-3 pl-4"><i class="fas fa-file"></i> &nbsp; Información del documento</legend>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="libro-tipo-usuario" class="bmd-label-floating text-top">Tipo de documento</label>
+                <select class="form-control" name="libro-tipo-usuario">
+                  <option value="" selected="" disabled="">Seleccione una opción </option>
+                  <option value="1">Solicitud</option>
+                  <option value="2">Oficio</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="solicitud-nombre" class="bmd-label-floating">Asunto</label>
+                <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="solicitud-asunto" id="solicitud-asunto" maxlength="40">
+              </div>
+            </div>
+
             <div class="col-12 col-md-6">
               <div class="form-group">
                 <label for="mesa-file" class="bmd-label-floating">Archivo (sodo .pdf)</label>
