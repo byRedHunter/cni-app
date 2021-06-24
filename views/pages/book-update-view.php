@@ -1,7 +1,8 @@
 <div class="full-box page-header">
-    <h3 class="text-left">
-        <i class="fas fa-sync-alt fa-fw"></i> &nbsp; ACTUALIZAR PRÉSTAMO
-    </h3>
+	<h3 class="text-left">
+		<i class="fas fa-book fa-fw"></i> &nbsp; NUEVO LIBRO
+	</h3>
+
     <p class="text-justify">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium quod harum vitae, fugit quo soluta. Molestias officiis voluptatum delectus doloribus at tempore, iste optio quam recusandae numquam non inventore dolor.
     </p>
@@ -9,199 +10,84 @@
 
 <div class="container-fluid">
     <ul class="full-box list-unstyled page-nav-tabs">
-        <li>
-            <a href="<?php echo SERVERURL; ?>book-new"><i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO LIBRO</a>
-        </li>
-        <li>
-            <a href="<?php echo SERVERURL; ?>book-reservation"><i class="far fa-calendar-alt"></i> &nbsp; RESERVACIONES</a>
-        </li>
-        <li>
-            <a href="<?php echo SERVERURL; ?>book-list"><i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; LISTA LIBROS</a>
-        </li>
-        <li>
-            <a href="<?php echo SERVERURL; ?>book-search"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; BUSCAR POR FECHA</a>
-        </li>
+		<li>
+			<a href="<?php echo SERVERURL; ?>book-reservation"><i class="far fa-calendar-alt"></i> &nbsp; RESERVACIONES</a>
+		</li>
+		<li>
+			<a href="<?php echo SERVERURL; ?>book-new"><i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO LIBRO</a>
+		</li>
+		<li>
+			<a href="<?php echo SERVERURL; ?>book-list"><i class="fas fa-list fa-fw"></i> &nbsp; LISTA LIBROS</a>
+		</li>
+		<li>
+			<a href="<?php echo SERVERURL; ?>book-search"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR POR TITULO</a>
+		</li>
     </ul>
 </div>
 
 <div class="container-fluid">
-
 	<div class="container-fluid form-neon">
-        <div class="container-fluid">
-            <p class="text-center roboto-medium">AGREGAR NUEVO PAGO A ESTE PRÉSTAMO</p>
-            <p class="text-center">Este préstamo presenta un pago pendiente por la cantidad de <strong>$50</strong>, puede agregar un pago a este préstamo haciendo clic en el siguiente botón.</p>
-            <p class="text-center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalPago"><i class="far fa-money-bill-alt"></i> &nbsp; Agregar pago</button>
-            </p>
-        </div>
-        <div class="container-fluid">
-            <div>
-                <span class="roboto-medium">CLIENTE:</span> 
-                &nbsp; Carlos Alfaro
-            </div>
-            <div class="table-responsive">
-                <table class="table table-dark table-sm">
-                    <thead>
-                        <tr class="text-center roboto-medium">
-                            <th>ITEM</th>
-                            <th>CANTIDAD</th>
-                            <th>TIEMPO</th>
-                            <th>COSTO</th>
-                            <th>TOTAL</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="text-center" >
-                            <td>Silla plastica</td>
-                            <td>7</td>
-                            <td>Hora</td>
-                            <td>$5.00</td>
-                            <td>$35.00</td>
-                        </tr>
-                        <tr class="text-center" >
-                            <td>Silla metalica</td>
-                            <td>9</td>
-                            <td>Día</td>
-                            <td>$5.00</td>
-                            <td>$45.00</td>
-                        </tr>
-                        <tr class="text-center" >
-                            <td>Mesa plastica</td>
-                            <td>5</td>
-                            <td>Evento</td>
-                            <td>$10.00</td>
-                            <td>$50.00</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-		<form action="" autocomplete="off">
-            <fieldset>
-                <legend><i class="far fa-clock"></i> &nbsp; Fecha y hora de préstamo</legend>
+		<form action="" autocomplete="off" method="POST">
+            <fieldset class="mb-4">
+                <legend><i class="fas fa-book"></i> &nbsp; Datos del libro</legend>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <label for="prestamo_fecha_inicio">Fecha de préstamo</label>
-                                <input type="date" class="form-control" readonly="" id="prestamo_fecha_inicio">
+                                <label for="libro-titulo" class="bmd-label-floating">Titulo <small> (*)</small></label>
+                                <input type="text" pattern="[0-9a-zA-ZáéíóúÁÉÍÓÚñÑ\22 ]{5,50}" class="form-control" name="libro-titulo-reg" id="libro-titulo" minlength="5" maxlength="50" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="prestamo_hora_inicio">Hora de préstamo</label>
-                                <input type="text" class="form-control" readonly="" id="prestamo_hora_inicio">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset>
-                <legend><i class="fas fa-history"></i> &nbsp; Fecha y hora de entrega</legend>
-                <div class="container-fluid">
-                    <div class="row">
+						    <div class="form-group">
+							    <label for="libro-serie" class="bmd-label-floating">Serie <small> (*)</small></label>
+							    <input type="password" class="form-control" name="libro-serie-reg" id="libro-serie" pattern="[a-zA-Z0-9$@.-]{7,100}" minlength="7" maxlength="100" required="" >
+						    </div>
+					    </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="prestamo_fecha_final">Fecha de entrega</label>
-                                <input type="date" class="form-control" readonly="" id="prestamo_fecha_final">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label for="prestamo_hora_final">Hora de entrega</label>
-                                <input type="text" class="form-control" readonly="" id="prestamo_hora_final">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset>
-                <legend><i class="fas fa-cubes"></i> &nbsp; Otros datos</legend>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <div class="form-group">
-                                <label for="prestamo_estado" class="bmd-label-floating">*** Estado ***</label>
-                                <select class="form-control" name="prestamo_estado_up" id="prestamo_estado">
-                                    <option value="Reservacion">Reservación</option>
-                                    <option value="Prestamo">Préstamo</option>
-                                    <option value="Finalizado">Finalizado</option>
+                            <div class="form-group bmd-form-group is-filled">
+                                <label for="libro-categoria" class="bmd-label-floating text-top">Categoria<small> (*)</small></label>
+                                <select class="form-control" name="libro-categoria-reg" id="libro-categoria" required>
+                                    <option value="" selected="" disabled="">Seleccione una opción</option>
+                                    <option value="1">Primaria</option>
+                                    <option value="2">Secundaria</option>
+                                    <option value="3">Otro</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-12 col-md-4">
-                            <div class="form-group">
-                                <label for="prestamo_total" class="bmd-label-floating">Total a pagar en $</label>
-                                <input type="text" pattern="[0-9.]{1,10}" class="form-control" readonly="" value="100.00" id="prestamo_total" maxlength="10">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <div class="form-group">
-                                <label for="prestamo_pagado" class="bmd-label-floating">Total depositado en $</label>
-                                <input type="text" pattern="[0-9.]{1,10}" class="form-control" readonly="" value="100.00" id="prestamo_pagado" maxlength="10">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="prestamo_observacion" class="bmd-label-floating">*** Observación ***</label>
-                                <input type="text" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ#() ]{1,400}" class="form-control" name="prestamo_observacion_up" id="prestamo_observacion" maxlength="400">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group bmd-form-group is-filled">
+                                <label for="libro-estado" class="bmd-label-floating text-top">Estado<small> (*)</small></label>
+                                <select class="form-control" name="libro-categoria-act" id="libro-estado" required>
+                                    <option value="" selected="" disabled="">Seleccione una opción</option>
+                                    <option value="1">Libre</option>
+                                    <option value="2">Prestado</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
             </fieldset>
-            <br><br><br>
-            <p class="text-center" style="margin-top: 40px;">
-                <button type="submit" class="btn btn-raised btn-success btn-sm"><i class="fas fa-sync-alt"></i> &nbsp; ACTUALIZAR</button>
-            </p>
-        </form>
-	</div>
-    <!-- MODAL PAGOS -->
-    <div class="modal fade" id="ModalPago" tabindex="-1" role="dialog" aria-labelledby="ModalPago" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalPago">Agregar pago</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive" >
-                        <table class="table table-hover table-bordered table-sm">
-                            <thead>
-                                <tr class="text-center bg-dark">
-                                    <th>FECHA</th>
-                                    <th>MONTO</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="text-center">
-                                    <td>Fecha</td>
-                                    <td>Monto</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="container-fluid">
-                        <input type="hidden" name="pago_codigo_reg">
-                        <div class="form-group">
-                            <label for="pago_monto_reg" class="bmd-label-floating">Monto en $</label>
-                            <input type="text" pattern="[0-9.]{1,10}" class="form-control" name="pago_monto_reg" id="pago_monto_reg" maxlength="10" required="">
+
+            <fieldset>
+                <legend><i class="fas fa-history"></i> &nbsp; Datos del autor</legend>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="libro-autor" class="bmd-label-floating">Autor <small> (*)</small></label>
+                                <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,35}" class="form-control" name="libro-autor-reg" id="libro-autor" maxlength="35" required>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-raised btn-info btn-sm" >Agregar pago</button> &nbsp;&nbsp; 
-                    <button type="button" class="btn btn-raised btn-danger btn-sm" data-dismiss="modal">Cancelar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    <div class="alert alert-danger text-center" role="alert">
-        <p><i class="fas fa-exclamation-triangle fa-5x"></i></p>
-        <h4 class="alert-heading">¡Ocurrió un error inesperado!</h4>
-        <p class="mb-0">Lo sentimos, no podemos mostrar la información solicitada debido a un error.</p>
-    </div>
-</div>
+            </fieldset>
+            
+			<br><br>
+			<p class="text-center" style="margin-top: 40px;">
+				<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+				&nbsp; &nbsp;
+				<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+			</p>
+		</form>
+	</div>

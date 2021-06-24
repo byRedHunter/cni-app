@@ -11,6 +11,10 @@
 	--border-color: #d8d8d8;
 }
 
+.text-table {
+	color: var(--accent-color);
+}
+
 .dashboard {
 	font-family: var(--font-family);
 	width: 100vw;
@@ -75,6 +79,7 @@
 	color: var(--color-three);
 	cursor: none;
 	pointer-events: none;
+	font-weight: bold !important;
 }
 .page-nav-tabs li a:hover {
 	text-decoration: none;

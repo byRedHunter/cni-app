@@ -1,7 +1,7 @@
 <?php
   class ViewModel {
     protected static function getViewsModel($view) {
-      $pageList = ["home", "user-list", "user-new", "user-search", "user-update", "desk-recents", "desk-list", "desk-search", "book-reservation", "book-new", "book-list", "book-search"];
+      $pageList = ["home", "user-list", "user-new", "user-search", "user-update", "desk-recents", "desk-list", "desk-search", "book-reservation", "book-new", "book-list", "book-search", "book-update"];
 
       if(in_array($view, $pageList)) {
         if(is_file("./views/pages/" . $view . "-view.php")) {

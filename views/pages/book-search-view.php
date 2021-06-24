@@ -1,43 +1,38 @@
 <div class="full-box page-header">
-    <h3 class="text-left">
-        <i class="fas fa-search-dollar fa-fw"></i> &nbsp; BUSCAR PRÉSTAMOS POR FECHA
-    </h3>
-    <p class="text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia fugiat est ducimus inventore, repellendus deserunt cum aliquam dignissimos, consequuntur molestiae perferendis quae, impedit doloribus harum necessitatibus magnam voluptatem voluptatum alias!
-    </p>
+	<h3 class="text-left">
+		<i class="fas fa-book fa-fw"></i> &nbsp; NUEVO LIBRO
+	</h3>
+
+  <p class="text-justify">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium quod harum vitae, fugit quo soluta. Molestias officiis voluptatum delectus doloribus at tempore, iste optio quam recusandae numquam non inventore dolor.
+  </p>
 </div>
 
 <div class="container-fluid">
-    <ul class="full-box list-unstyled page-nav-tabs">
-        <li>
-            <a href="<?php echo SERVERURL; ?>book-new"><i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO LIBRO</a>
-        </li>
-        <li>
-            <a href="<?php echo SERVERURL; ?>book-reservation"><i class="far fa-calendar-alt"></i> &nbsp; RESERVACIONES</a>
-        </li>
-        <li>
-            <a href="<?php echo SERVERURL; ?>book-list"><i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; LISTA LIBROS</a>
-        </li>
-        <li>
-            <a href="<?php echo SERVERURL; ?>book-search"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; BUSCAR POR FECHA</a>
-        </li>
-    </ul>
+  <ul class="full-box list-unstyled page-nav-tabs">
+		<li>
+			<a href="<?php echo SERVERURL; ?>book-reservation"><i class="far fa-calendar-alt"></i> &nbsp; RESERVACIONES</a>
+		</li>
+		<li>
+			<a href="<?php echo SERVERURL; ?>book-new"><i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO LIBRO</a>
+		</li>
+		<li>
+			<a href="<?php echo SERVERURL; ?>book-list"><i class="fas fa-list fa-fw"></i> &nbsp; LISTA LIBROS</a>
+		</li>
+		<li>
+			<a class="active" href="<?php echo SERVERURL; ?>book-search"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR POR TITULO</a>
+		</li>
+  </ul>
 </div>
 
 <div class="container-fluid">
-	<form class="form-neon" action="">
+<form class="form-neon" action="">
 		<div class="container-fluid">
 			<div class="row justify-content-md-center">
-				<div class="col-12 col-md-4">
-					<div class="form-group">
-						<label for="busqueda_inicio_prestamo" >Fecha inicial (día/mes/año)</label>
-						<input type="date" class="form-control" name="busqueda_inicio_prestamo" id="busqueda_inicio_prestamo" maxlength="30">
-					</div>
-				</div>
-				<div class="col-12 col-md-4">
-					<div class="form-group">
-						<label for="busqueda_final_prestamo" >Fecha final (día/mes/año)</label>
-						<input type="date" class="form-control" name="busqueda_final_prestamo" id="busqueda_final_prestamo" maxlength="30">
+				<div class="col-12 col-md-6">
+					<div class="form-group bmd-form-group">
+						<label for="inputSearch" class="bmd-label-floating">¿Qué libro estas buscando?</label>
+						<input type="text" class="form-control" name="busqueda-" id="inputSearch" maxlength="30">
 					</div>
 				</div>
 				<div class="col-12">
@@ -49,37 +44,33 @@
 		</div>
 	</form>
 </div>
+
 <div class="container-fluid">
-	<form action="">
-		<input type="hidden" name="eliminar_busqueda_prestamo" value="eliminar">
-		<div class="container-fluid">
-			<div class="row justify-content-md-center">
-				<div class="col-12 col-md-6">
-					<p class="text-center" style="font-size: 20px;">
-						Fecha de busqueda: <strong>01/01/2020 &nbsp; a &nbsp; 01/01/2020</strong>
-					</p>
-				</div>
-				<div class="col-12">
-					<p class="text-center" style="margin-top: 20px;">
-						<button type="submit" class="btn btn-raised btn-danger"><i class="far fa-trash-alt"></i> &nbsp; ELIMINAR BÚSQUEDA</button>
-					</p>
-				</div>
-			</div>
+	<div class="row justify-content-md-center">
+		<div class="col-12 col-md-6">
+			<p class="text-center" style="font-size: 20px;">
+				Resultados de la busqueda <strong>“Buscar”</strong>
+			</p>
 		</div>
-	</form>
+		<div class="col-12">
+			<p class="text-center" style="margin-top: 20px;">
+				<button type="submit" class="btn btn-raised btn-danger"><i class="far fa-trash-alt"></i> &nbsp; ELIMINAR BÚSQUEDA</button>
+			</p>
+		</div>
+	</div>
 </div>
+
 <div class="container-fluid">
 	<div class="table-responsive">
-		<table class="table table-dark table-sm">
+	<table class="table table-dark table-sm">
 			<thead>
 				<tr class="text-center roboto-medium">
 					<th>#</th>
-					<th>CLIENTE</th>
-					<th>FECHA DE PRÉSTAMO</th>
-					<th>FECHA DE ENTREGA</th>
-					<th>TIPO</th>
+					<th>TITULO</th>
+					<th>AUTOR</th>
+					<th>SERIE</th>
+					<th>CATEGORIA</th>
 					<th>ESTADO</th>
-					<th>FACTURA</th>
 					<th>ACTUALIZAR</th>
 					<th>ELIMINAR</th>
 				</tr>
@@ -87,19 +78,14 @@
 			<tbody>
 				<tr class="text-center" >
 					<td>1</td>
-					<td>NOMBRE CLIENTE</td>
-					<td>2017/10/8</td>
-					<td>2017/10/10</td>
-					<td><span class="badge badge-warning">Reservacion</span></td>
-					<td><span class="badge badge-danger">Pendiente</span></td>
+					<td>Aunque tenga miedo hágalo igual</td>
+					<td>Susan Jeffers</td>
+					<td>1585766826587</td>
+					<td><span class="badge badge-dark">Otro</span></td>
+					<td><span class="badge badge-primary">Libre</span></td>
 					<td>
-						<a href="#" class="btn btn-info">
-								<i class="fas fa-file-pdf"></i>	
-						</a>
-					</td>
-					<td>
-						<a href="reservation-update.html" class="btn btn-success">
-								<i class="fas fa-sync-alt"></i>	
+						<a href="<?php echo SERVERURL; ?>book-update" class="btn btn-success">
+							<i class="fas fa-sync-alt"></i>	
 						</a>
 					</td>
 					<td>
@@ -111,20 +97,15 @@
 					</td>
 				</tr>
 				<tr class="text-center" >
-					<td>2</td>
-					<td>NOMBRE CLIENTE</td>
-					<td>2017/10/8</td>
-					<td>2017/10/10</td>
-					<td><span class="badge badge-dark">Finalizado</span></td>
-					<td><span class="badge badge-primary">Cancelado</span></td>
+					<td>1</td>
+					<td>Aunque tenga miedo hágalo igual</td>
+					<td>Susan Jeffers</td>
+					<td>1585766826587</td>
+					<td><span class="badge badge-success">Primaria</span></td>
+					<td><span class="badge badge-primary">Libre</span></td>
 					<td>
-						<a href="#" class="btn btn-info">
-								<i class="fas fa-file-pdf"></i>	
-						</a>
-					</td>
-					<td>
-						<a href="reservation-update.html" class="btn btn-success">
-								<i class="fas fa-sync-alt"></i>	
+						<a href="<?php echo SERVERURL; ?>book-update" class="btn btn-success">
+							<i class="fas fa-sync-alt"></i>	
 						</a>
 					</td>
 					<td>
@@ -136,45 +117,15 @@
 					</td>
 				</tr>
 				<tr class="text-center" >
-					<td>3</td>
-					<td>NOMBRE CLIENTE</td>
-					<td>2017/10/8</td>
-					<td>2017/10/10</td>
-					<td><span class="badge badge-info">Prestamo</span></td>
-					<td><span class="badge badge-danger">Pendiente</span></td>
+					<td>1</td>
+					<td>Aunque tenga miedo hágalo igual</td>
+					<td>Susan Jeffers</td>
+					<td>1585766826587</td>
+					<td><span class="badge badge-info">Secundaria</span></td>
+					<td><span class="badge badge-danger">Prestado</span></td>
 					<td>
-						<a href="#" class="btn btn-info">
-								<i class="fas fa-file-pdf"></i>	
-						</a>
-					</td>
-					<td>
-						<a href="reservation-update.html" class="btn btn-success">
-								<i class="fas fa-sync-alt"></i>	
-						</a>
-					</td>
-					<td>
-						<form action="">
-							<button type="button" class="btn btn-warning">
-									<i class="far fa-trash-alt"></i>
-							</button>
-						</form>
-					</td>
-				</tr>
-				<tr class="text-center" >
-					<td>4</td>
-					<td>NOMBRE CLIENTE</td>
-					<td>2017/10/8</td>
-					<td>2017/10/10</td>
-					<td><span class="badge badge-dark">Finalizado</span></td>
-					<td><span class="badge badge-primary">Cancelado</span></td>
-					<td>
-						<a href="#" class="btn btn-info">
-								<i class="fas fa-file-pdf"></i>	
-						</a>
-					</td>
-					<td>
-						<a href="reservation-update.html" class="btn btn-success">
-								<i class="fas fa-sync-alt"></i>	
+						<a href="<?php echo SERVERURL; ?>book-update" class="btn btn-success">
+							<i class="fas fa-sync-alt"></i>	
 						</a>
 					</td>
 					<td>
