@@ -1,6 +1,6 @@
 <div class="full-box page-header">
 	<h3 class="text-left">
-		<i class="fas fa-search-dollar fa-fw"></i> &nbsp; BUSCAR DOCUMENTO POR FECHA
+		<i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR DOCUMENTO POR FECHA
 	</h3>
 	<p class="text-justify">
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia fugiat est ducimus inventore, repellendus deserunt cum aliquam dignissimos, consequuntur molestiae perferendis quae, impedit doloribus harum necessitatibus magnam voluptatem voluptatum alias!
