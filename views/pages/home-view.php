@@ -9,7 +9,7 @@
 
 <!-- Content -->
 <div class="full-box tile-container">
-  <?php if($_SESSION['privilegio'] == 3) { ?>
+  <?php if($_SESSION['privilegio'] == 3 || $_SESSION['privilegio'] == 1) { ?>
   <a href="<?php echo SERVERURL; ?>book-reservation" class="tile">
     <div class="tile-tittle">Biblioteca</div>
     <div class="tile-icon">
@@ -19,7 +19,7 @@
   </a>
   <?php } ?>
 
-  <?php if($_SESSION['privilegio'] == 2) { ?>
+  <?php if($_SESSION['privilegio'] == 2 || $_SESSION['privilegio'] == 1) { ?>
   <a href="<?php echo SERVERURL; ?>desk-recents" class="tile">
     <div class="tile-tittle">Mesa de Parte</div>
     <div class="tile-icon">
