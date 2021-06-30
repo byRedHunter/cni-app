@@ -15,6 +15,7 @@
 							<a href="<?php echo SERVERURL; ?>home"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard</a>
 						</li>
 
+						<?php if($_SESSION['privilegio'] == 1 || $_SESSION['privilegio'] == 3) { ?>
 						<li>
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-book fa-fw"></i> &nbsp; Biblioteca <i class="fas fa-chevron-down"></i></a>
 							<ul>
@@ -32,7 +33,9 @@
 								</li>
 							</ul>
 						</li>
+						<?php } ?>
 
+						<?php if($_SESSION['privilegio'] == 1 || $_SESSION['privilegio'] == 2) { ?>
 						<li>
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Mesa de Partes <i class="fas fa-chevron-down"></i></a>
 							<ul>
@@ -47,8 +50,9 @@
 								</li>
 							</ul>
 						</li>
+						<?php } ?>
 
-						<?php if($_SESSION['privilegio'] != 1) { ?>
+						<?php if($_SESSION['privilegio'] == 1) { ?>
 						<li>
 							<a href="#" class="nav-btn-submenu"><i class="fas  fa-user-secret fa-fw"></i> &nbsp; Usuarios <i class="fas fa-chevron-down"></i></a>
 							<ul>

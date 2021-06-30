@@ -45,14 +45,14 @@
 					<div class="col-12 col-md-4">
 						<div class="form-group">
 							<label for="usuario-nombre" class="bmd-label-floating">Nombres <small> (*)</small></label>
-							<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,35}" class="form-control" name="usuario-nombre-reg" id="usuario-nombre" maxlength="35" required>
+							<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,35}" class="form-control" name="usuario-nombre-reg" id="usuario-nombre" minlength="3" maxlength="35" required>
 						</div>
 					</div>
 
 					<div class="col-12 col-md-4">
 						<div class="form-group">
 							<label for="usuario-apellido" class="bmd-label-floating">Apellidos <small> (*)</small></label>
-							<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,35}" class="form-control" name="usuario-apellido-reg" id="usuario-apellido" maxlength="35" required>
+							<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,35}" class="form-control" name="usuario-apellido-reg" id="usuario-apellido" minlength="3" maxlength="35" required>
 						</div>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 					<div class="col-12 col-md-6">
 						<div class="form-group">
 							<label for="usuario-usuario" class="bmd-label-floating">Nombre de usuario <small> (*)</small></label>
-							<input type="text" pattern="[a-zA-Z0-9]{5,35}" class="form-control" name="usuario-username-reg" id="usuario-usuario" maxlength="35">
+							<input type="text" pattern="[a-zA-Z0-9]{5,35}" class="form-control" name="usuario-username-reg" id="usuario-usuario" maxlength="35" minlength="5">
 						</div>
 					</div>
 					<div class="col-12 col-md-6">
@@ -78,13 +78,13 @@
 					<div class="col-12 col-md-6">
 						<div class="form-group">
 							<label for="usuario-clave-1" class="bmd-label-floating">Contraseña <small> (*)</small></label>
-							<input type="password" class="form-control" name="usuario-clave-1-reg" id="usuario-clave-1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required="" >
+							<input type="password" class="form-control" name="usuario-clave-1-reg" id="usuario-clave-1" pattern="[a-zA-Z0-9$@.-]{7,100}"  minlength="7" maxlength="100" required="" >
 						</div>
 					</div>
 					<div class="col-12 col-md-6">
 						<div class="form-group">
 							<label for="usuario-clave-2" class="bmd-label-floating">Repetir contraseña <small> (*)</small></label>
-							<input type="password" class="form-control" name="usuario-clave-2-reg" id="usuario-clave-2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required="" >
+							<input type="password" class="form-control" name="usuario-clave-2-reg" id="usuario-clave-2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" minlength="7" required="" >
 						</div>
 					</div>
 				</div>

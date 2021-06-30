@@ -9,6 +9,7 @@
 
 <!-- Content -->
 <div class="full-box tile-container">
+  <?php if($_SESSION['privilegio'] == 3) { ?>
   <a href="<?php echo SERVERURL; ?>book-reservation" class="tile">
     <div class="tile-tittle">Biblioteca</div>
     <div class="tile-icon">
@@ -16,7 +17,9 @@
       <p>200 Registrados</p>
     </div>
   </a>
+  <?php } ?>
 
+  <?php if($_SESSION['privilegio'] == 2) { ?>
   <a href="<?php echo SERVERURL; ?>desk-recents" class="tile">
     <div class="tile-tittle">Mesa de Parte</div>
     <div class="tile-icon">
@@ -24,7 +27,9 @@
       <p>700 Registrados</p>
     </div>
   </a>
+  <?php } ?>
 
+  <?php if($_SESSION['privilegio'] == 1) { ?>
   <a href="<?php echo SERVERURL; ?>user-list" class="tile">
     <div class="tile-tittle">Usuarios</div>
     <div class="tile-icon">
@@ -32,4 +37,5 @@
       <p>50 Registrados</p>
     </div>
   </a>
+  <?php } ?>
 </div>
