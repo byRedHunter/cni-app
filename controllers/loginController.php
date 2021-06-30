@@ -40,11 +40,8 @@
 
       $request = LoginModel::initSessionModel($loginData);
 
-      //print_r($request);
-
       if($request->rowCount() == 1) {
         $row = $request->fetch();
-        print_r($row);
 
         session_start(["name" => "cni"]);
 
