@@ -362,7 +362,7 @@ table form {
 	justify-content: space-between;
 }
 
-.navbar-info a {
+.navbar-info .navbar-info-item {
 	color: var(--accent-color);
 	height: 50px;
 	min-width: 40px;
@@ -371,8 +371,9 @@ table form {
 	display: inline-block;
 	transition: all 0.2s ease-out;
 	user-select: none;
+	cursor: pointer;
 }
-.navbar-info a:hover {
+.navbar-info .navbar-info-item:hover {
 	color: var(--color-three);
 	background-image: radial-gradient(
 		circle,
@@ -380,8 +381,8 @@ table form {
 		transparent 80%
 	);
 }
-.navbar-info a:active,
-.navbar-info a:focus {
+.navbar-info .navbar-info-item:active,
+.navbar-info .navbar-info-item:focus {
 	outline: none;
 }
 

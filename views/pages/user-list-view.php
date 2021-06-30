@@ -1,3 +1,11 @@
+<?php
+	if($_SESSION['privilegio'] != 1) {
+		echo $loginController->forceCloseSessionController();
+
+		exit();
+	}
+?>
+
 <div class="full-box page-header">
 	<h3 class="text-left">
 		<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE USUARIOS

@@ -5,7 +5,7 @@
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="<?php echo SERVERURL; ?>views/assets/images/Avatar.png" class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
-						Jhonny Quispe <br><small class="roboto-condensed-light">Administrador</small>
+						<?php echo $_SESSION["nombre"] . " " . $_SESSION["apellido"]; ?> <br><small class="roboto-condensed-light"><?php echo $_SESSION["username"]; ?></small>
 					</figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar"></div>
@@ -48,6 +48,7 @@
 							</ul>
 						</li>
 
+						<?php if($_SESSION['privilegio'] != 1) { ?>
 						<li>
 							<a href="#" class="nav-btn-submenu"><i class="fas  fa-user-secret fa-fw"></i> &nbsp; Usuarios <i class="fas fa-chevron-down"></i></a>
 							<ul>
@@ -62,6 +63,7 @@
 								</li>
 							</ul>
 						</li>
+						<?php } ?>
 					</ul>
 				</nav>
 			</div>

@@ -1,6 +1,3 @@
-<!-- Sweet Alert-->
-<script src="<?php echo SERVERURL; ?>views/assets/js/sweetalert2.all.min.js"></script>
-
 <!-- jQuery V3.4.1 -->
 <script src="<?php echo SERVERURL; ?>views/assets/js/jquery-3.4.1.min.js"></script>
 

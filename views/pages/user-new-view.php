@@ -1,3 +1,11 @@
+<?php
+	if($_SESSION['privilegio'] != 1) {
+		echo $loginController->forceCloseSessionController();
+
+		exit();
+	}
+?>
+
 <div class="full-box page-header">
 	<h3 class="text-left">
 		<i class="fas fa-user fa-fw"></i> &nbsp; NUEVO USUARIO

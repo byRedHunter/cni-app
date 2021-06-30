@@ -1,3 +1,6 @@
+<!-- Sweet Alert-->
+<script src="<?php echo SERVERURL; ?>views/assets/js/sweetalert2.all.min.js"></script>
+
 <!-- Bootstrap V4.3 -->
 <link rel="stylesheet" href="<?php echo SERVERURL; ?>views/assets/css/bootstrap.min.css">
 

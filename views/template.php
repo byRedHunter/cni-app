@@ -21,6 +21,16 @@
     if($page == "404" || $page =="login" || $page =="library" || $page =="procedure") {
       require_once "./views/pages/" . $page . "-view.php";
     } else {
+      session_start(["name" => "cni"]);
+
+      require_once "./controllers/loginController.php";
+      $loginController = new LoginController();
+
+      if(!isset($_SESSION["token"]) || !isset($_SESSION["username"]) || !isset($_SESSION["privilegio"]) || !isset($_SESSION["id"])) {
+        echo $loginController->forceCloseSessionController();
+
+        exit();
+      }
   ?>
 
   <div class="dashboard">
@@ -39,6 +49,7 @@
   </div>
 
   <?php
+      include "./views/components/logout.php";
     }
 
     include_once "./views/components/scripts.php";

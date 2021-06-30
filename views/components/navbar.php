@@ -1,13 +1,13 @@
 <nav class="full-box navbar-info">
-  <a href="#" class=" show-nav-lateral">
+  <div class="navbar-info-item show-nav-lateral" role="button">
     <i class="fas fa-exchange-alt"></i>
-  </a>
+  </div>
   <div>
-    <a href="<?php echo SERVERURL; ?>user-update">
+    <a class="navbar-info-item" href="<?php echo SERVERURL; ?>user-update">
       <i class="fas fa-user-cog"></i>
     </a>
-    <a href="#" class="btn-exit-system">
+    <div class="navbar-info-item btn-exit-system" role="button">
       <i class="fas fa-power-off"></i>
-    </a>
+    </div>
   </div>
 </nav>
