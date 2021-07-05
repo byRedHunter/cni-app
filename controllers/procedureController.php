@@ -97,6 +97,7 @@
         } else {
           // actualizamos datos
           SolicitanteModel::updateSolicitanteModel($solicitanteInfo);
+          $idSolicitante = $row['idSolicitante'];
         }
       } else {
         // si no eixte solicitante, registramos
