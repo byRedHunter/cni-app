@@ -118,7 +118,7 @@
         $recepcionInfo = [
           'asunto' => $asunto,
           'tipoDocumento' => $tipoDocumento,
-          'archivo' => $nameFile,
+          'archivo' => $nameFile . ".pdf",
           'idSolicitante' => $idSolicitante,
         ];
 
@@ -136,5 +136,29 @@
 
         exit();
       }
+    }
+
+    // obtener informacion del solicitante
+    public function getInfoSolicitante() {
+      $data = SolicitanteModel::getSolicitanteModel(['dni' => $_POST['solicitud-dni']]);
+
+      if($data->rowCount() == 1) {
+        $row = $data->fetch();
+
+        $message = [
+          'error' => false,
+          'name' => $row['nombre'],
+          'lastName' => $row['apellido'],
+          'email' => $row['email'],
+          'phone' => $row['celular']
+        ];
+      } else {
+        $message = [
+          'error' => true,
+          'message' => 'No existe ese usuario'
+        ];
+      }
+
+      echo json_encode($message);
     }
   }

@@ -92,3 +92,41 @@
 <?php
   include_once "./views/components/footer-landing.php";
 ?>
+
+<script>
+  const $dni = document.querySelector('#solicitud-dni')
+  const $nombre = document.querySelector('#solicitud-nombre')
+  const $apellido = document.querySelector('#solicitud-apellido')
+  const $email = document.querySelector('#solicitud-email')
+  const $celular = document.querySelector('#solicitud-celular')
+
+  const getUserData = (dni) => {
+    let userInfo
+    let data = new FormData()
+    data.append('solicitud-dni', dni)
+    data.append('action', 'get-info')
+
+    const url = '<?php echo SERVERURL; ?>ajax/procedureAjax.php'
+
+    fetch(url, {
+      method: 'POST',
+      body: data,
+    })
+    .then(response => response.json())
+    .then(info => {
+      console.log(info);
+      if(!info.error) {
+        $nombre.value = info.name
+        $apellido.value = info.lastName
+        $email.value = info.email
+        $celular.value = info.phone
+      }
+    })
+  }
+
+  $dni.addEventListener('blur', () => {
+    if($dni.value.length === 8) {
+      getUserData($dni.value)
+    }
+  })
+</script>
