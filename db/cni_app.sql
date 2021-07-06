@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-06-2021 a las 17:42:09
+-- Tiempo de generación: 06-07-2021 a las 21:43:39
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 7.4.16
 
@@ -47,10 +47,20 @@ CREATE TABLE `recepcion` (
   `asunto` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `tipoDocumento` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `archivo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `fecha` date NOT NULL,
-  `estado` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `fecha` datetime NOT NULL DEFAULT current_timestamp(),
+  `estado` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Nuevo',
   `idSolicitante` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `recepcion`
+--
+
+INSERT INTO `recepcion` (`idRecepcion`, `asunto`, `tipoDocumento`, `archivo`, `fecha`, `estado`, `idSolicitante`) VALUES
+(1, 'Recuerdo', '1', '60e337cbdb890.pdf', '2021-07-05 11:48:11', 'Nuevo', 5),
+(3, 'Asunto Test', '4', '60e3391303abd.pdf', '2021-07-05 11:53:39', 'Nuevo', 1),
+(4, 'Carta de Presentacion', '3', '60e3450fb06d1.pdf', '2021-07-05 12:44:47', 'Nuevo', 2),
+(5, 'Oficio', '2', '60e345abb48d6.pdf', '2021-07-05 12:47:23', 'Nuevo', 4);
 
 -- --------------------------------------------------------
 
@@ -66,6 +76,17 @@ CREATE TABLE `solicitante` (
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `celular` varchar(9) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `solicitante`
+--
+
+INSERT INTO `solicitante` (`idSolicitante`, `dni`, `nombre`, `apellido`, `email`, `celular`) VALUES
+(1, '96878585', 'Mario', 'Chumpitaz', 'mario.chumpitaz@gmail.com', '965487855'),
+(2, '96868585', 'Rocio', 'Martinez', 'rocio.martinez@gmail.com', '965878578'),
+(3, '90868585', 'Rocio', 'Martinez', 'rocio.martinez@gmail.com', '965878578'),
+(4, '90868500', 'Marco', 'Quispe Navarro', 'marco.quispe@gmail.com', '965878578'),
+(5, '36587542', 'Rocio', 'Martinez Guerra', 'rocio.martinez@gmail.com', '965878578');
 
 -- --------------------------------------------------------
 
@@ -95,7 +116,7 @@ CREATE TABLE `usuario` (
   `apellido` varchar(35) COLLATE utf8_unicode_ci NOT NULL,
   `username` varchar(35) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `clave` text COLLATE utf8_unicode_ci NOT NULL,
+  `clave` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
   `privilegio` int(1) NOT NULL,
   `estado` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -105,7 +126,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `dni`, `nombre`, `apellido`, `username`, `email`, `clave`, `privilegio`, `estado`) VALUES
-(1, '73109572', 'Jhonny', 'Quispe Navarro', 'RedHunter', '', 'bTRKYUZSdHh5NTQvUTMwcVRjcjFNdz09', 1, 'Activo');
+(1, '73109572', 'Jhonny', 'Quispe Navarro', 'RedHunter', '', 'bTRKYUZSdHh5NTQvUTMwcVRjcjFNdz09', 1, 'Activo'),
+(2, '96485785', 'Jhonny', 'Quispe Navarro', 'byredhunter', '', 'UFhzZmY5KzlWTitMUjc3RmVZcFp5dz09', 1, 'Activo'),
+(3, '96585655', 'Luz', 'Sandoval Gutierrez', 'luzsandoval', '', 'TmJIb2F0SFNyS0pOWGN6eTNHS0lWZz09', 2, 'Activo');
 
 --
 -- Índices para tablas volcadas
@@ -160,13 +183,13 @@ ALTER TABLE `libro`
 -- AUTO_INCREMENT de la tabla `recepcion`
 --
 ALTER TABLE `recepcion`
-  MODIFY `idRecepcion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRecepcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitante`
 --
 ALTER TABLE `solicitante`
-  MODIFY `idSolicitante` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idSolicitante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud_libro`
@@ -178,7 +201,7 @@ ALTER TABLE `solicitud_libro`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

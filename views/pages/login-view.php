@@ -1,5 +1,5 @@
 <?php
-	session_start(["name" => "cni"]);
+	session_start(["name" => NAMESESSION]);
 
   if(isset($_SESSION["token"]) || isset($_SESSION["username"]) || isset($_SESSION["privilegio"]) || isset($_SESSION["id"])) {
     header("Location: " . SERVERURL . "home");
