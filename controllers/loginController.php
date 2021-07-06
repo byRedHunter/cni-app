@@ -43,7 +43,7 @@
       if($request->rowCount() == 1) {
         $row = $request->fetch();
 
-        session_start(["name" => "cni"]);
+        session_start(["name" => NAMESESSION]);
 
         $_SESSION["id"] = $row["idUsuario"];
         $_SESSION["nombre"] = $row["nombre"];
@@ -78,7 +78,7 @@
 
     // cerrar session
     public function closeSessionController() {
-      session_start(["name" => "cni"]);
+      session_start(["name" => NAMESESSION]);
 
       $token = MainModel::decryption($_POST['token']);
       $usuario = MainModel::decryption($_POST['username']);

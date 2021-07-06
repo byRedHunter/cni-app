@@ -21,7 +21,7 @@
     if($page == "404" || $page =="login" || $page =="library" || $page =="procedure") {
       require_once "./views/pages/" . $page . "-view.php";
     } else {
-      session_start(["name" => "cni"]);
+      session_start(["name" => NAMESESSION]);
 
       require_once "./controllers/loginController.php";
       $loginController = new LoginController();

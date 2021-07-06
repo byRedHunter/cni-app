@@ -16,7 +16,7 @@
       echo $pc->addProcedureController();
     }
   } else {
-    session_start(["name" => "cni"]);
+    session_start(["name" => NAMESESSION]);
     session_unset();
     session_destroy();
     header("Location: " . SERVERURL . "login");
