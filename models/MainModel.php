@@ -46,6 +46,15 @@
       return $alertText;
     }
 
+    protected static function codeToRegister() {
+      $monthNum = date("m");
+      $monthName = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+         
+      $code = $monthName[(int)$monthNum - 1] . date("d") . "-" . uniqid();;
+
+      return $code;
+    }
+
     /* encriptar cadenas */
     public function encryption($string){
 			$output = false;

@@ -120,12 +120,13 @@
           'tipoDocumento' => $tipoDocumento,
           'archivo' => $nameFile . ".pdf",
           'idSolicitante' => $idSolicitante,
+          'codigo' => MainModel::codeToRegister(),
         ];
 
         $saveRecepcion = ProcedureModel::addProcedureModel($recepcionInfo);
 
         if($saveRecepcion->rowCount() == 1) {
-          $message = MainModel::alertContent("limpiar", "Documento Registrado", "Sus han sido registrados con exito.", "success");
+          $message = MainModel::alertContent("limpiar", "Solicitud Registrada", "¡IMPORTANTE! Su codigo de solicitud es " . $recepcionInfo['codigo'] . " guardelo.", "success");
         } else {
           $message = MainModel::alertContent("simple", "Algo salio mal.", "No hemos podido registrar sus datos, intentelo más tarde.", "error");
         }
