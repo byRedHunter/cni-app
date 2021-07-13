@@ -26,7 +26,7 @@
 
 <div class="container-fluid">
 	<div class="container-fluid form-neon">
-		<form action="" autocomplete="off" method="POST">
+		<form class="formAjax" action="<?php echo SERVERURL; ?>ajax/bookAjax.php" data-form="save" autocomplete="off" method="POST">
             <fieldset class="mb-4">
                 <legend><i class="fas fa-book"></i> &nbsp; Datos del libro</legend>
                 <div class="container-fluid">
@@ -40,18 +40,13 @@
                         <div class="col-12 col-md-6">
 						    <div class="form-group">
 							    <label for="libro-serie" class="bmd-label-floating">Serie <small> (*)</small></label>
-							    <input type="password" class="form-control" name="libro-serie-reg" id="libro-serie" pattern="[a-zA-Z0-9$@.-]{7,100}" minlength="7" maxlength="100" required="" >
+							    <input type="text" class="form-control" name="libro-serie-reg" id="libro-serie" pattern="[a-zA-Z0-9$@.-]{7,100}" minlength="7" maxlength="100" required="" >
 						    </div>
 					    </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group bmd-form-group is-filled">
-                                <label for="libro-categoria" class="bmd-label-floating text-top">Categoria<small> (*)</small></label>
-                                <select class="form-control" name="libro-categoria-reg" id="libro-categoria" required>
-                                    <option value="" selected="" disabled="">Seleccione una opción</option>
-                                    <option value="1">Primaria</option>
-                                    <option value="2">Secundaria</option>
-                                    <option value="3">Otro</option>
-                                </select>
+                                <label for="libro-categoria" class="bmd-label-floating">Categoria <small> (*)</small></label>
+                                <input type="text" pattern="[0-9a-zA-ZáéíóúÁÉÍÓÚñÑ\22]{5,15}" class="form-control" name="libro-categoria-reg" id="libro-categoria" minlength="5" maxlength="50" required>
                             </div>
                         </div>
                     </div>
