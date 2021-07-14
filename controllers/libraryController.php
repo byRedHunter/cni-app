@@ -150,4 +150,13 @@
 
       echo json_encode($message);
     }
+
+    // obtener datos totales de reservas de libro
+    public function getTotalRequest() {
+      $query = MainModel::connect()->prepare("SELECT idSolicitudLibro FROM solicitud_libro");
+
+      $query->execute();
+
+      return $query;
+    }
   }

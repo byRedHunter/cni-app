@@ -162,4 +162,13 @@
 
       echo json_encode($message);
     }
+
+    // obtener datos totales de la solicitud
+    public function getTotalProcedures() {
+      $query = MainModel::connect()->prepare("SELECT idRecepcion FROM recepcion");
+
+      $query->execute();
+
+      return $query;
+    }
   }
