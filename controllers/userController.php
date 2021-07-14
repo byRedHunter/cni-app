@@ -279,4 +279,13 @@
 
       echo json_encode($message);
     }
+
+    // obtener usuarios
+    public function getUserController($type, $idUsuario) {
+      $type = MainModel::clearString($type);
+      $idUsuario = MainModel::decryption($idUsuario);
+      $idUsuario = MainModel::clearString($idUsuario);
+
+      return UserModel::getUserModel($type, $idUsuario);
+    }
   }

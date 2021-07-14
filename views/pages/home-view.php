@@ -29,12 +29,17 @@
   </a>
   <?php } ?>
 
-  <?php if($_SESSION['privilegio'] == 1) { ?>
+  <?php
+    if($_SESSION['privilegio'] == 1) {
+      require_once "./controllers/userController.php";
+      $uc = new UserController();
+      $totalUsers = $uc->getUserController('count', 0);
+  ?>
   <a href="<?php echo SERVERURL; ?>user-list" class="tile">
     <div class="tile-tittle">Usuarios</div>
     <div class="tile-icon">
       <i class="fas fa-user-secret fa-fw"></i>
-      <p>50 Registrados</p>
+      <p><?php echo $totalUsers->rowCount(); ?> Registrados</p>
     </div>
   </a>
   <?php } ?>

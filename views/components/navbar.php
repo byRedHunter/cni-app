@@ -3,7 +3,7 @@
     <i class="fas fa-exchange-alt"></i>
   </div>
   <div>
-    <a class="navbar-info-item" href="<?php echo SERVERURL; ?>user-update">
+    <a class="navbar-info-item" href="<?php echo SERVERURL . "user-update/" . $loginController->encryption($_SESSION['id']); ?>">
       <i class="fas fa-user-cog"></i>
     </a>
     <div class="navbar-info-item btn-exit-system" role="button">

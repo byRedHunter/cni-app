@@ -96,9 +96,9 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12">
-						<p><span class="badge badge-info">Control total</span> Permisos para registrar, actualizar y eliminar</p>
-						<p><span class="badge badge-success">Edición</span> Permisos para registrar y actualizar</p>
-						<p><span class="badge badge-dark">Registrar</span> Solo permisos para registrar</p>
+						<p><span class="badge badge-info">Administrador</span> Control total del sistema</p>
+						<p><span class="badge badge-success">Secretaria</span> Solo permisos para el control de mesa de partes</p>
+						<p><span class="badge badge-dark">Biblioteca</span> Solo permisos para el control de la biblioteca</p>
 						<div class="form-group">
 							<select class="form-control" name="usuario-privilegio" required>
 								<option value="" selected="" disabled="">Seleccione una opción</option>

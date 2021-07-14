@@ -29,4 +29,18 @@
 
       return $query;
     }
+
+    // obtener datos del usuario
+    protected static function getUserModel($type, $idUsuario) {
+      if($type == "user") {
+        $query = MainModel::connect()->prepare("SELECT * FROM usuario WHERE idUsuario = :idUsuario");
+        $query->bindParam(":idUsuario", $idUsuario);
+      } else if($type == "count") {
+        $query = MainModel::connect()->prepare("SELECT idUsuario FROM usuario WHERE idUsuario != '1'");
+      }
+
+      $query->execute();
+
+      return $query;
+    }
   }
