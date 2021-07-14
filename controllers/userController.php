@@ -129,4 +129,108 @@
 
       echo json_encode($message);
     }
+
+    // paginacion de usuarios
+    public function paginatorUserController($page, $registers, $privilegio, $id, $url, $search) {
+      $page = MainModel::clearString($page);
+      $registers = MainModel::clearString($registers);
+      $id = MainModel::clearString($id);
+
+      $url = MainModel::clearString($url);
+      $url = SERVERURL . $url . "/";
+
+      $search = MainModel::clearString($search);
+      $table = "";
+
+      $page = (isset($page) && $page > 0) ? (int)$page : 1;
+      $start = ($page > 0) ? (($page * $registers) - $registers) : 0;
+
+      if(isset($search) && $search != "") {
+        $query = "SELECT SQL_CALC_FOUND_ROWS * FROM usuario WHERE ((idUsuario != '$id' AND idUsuario != '1') AND (dni LIKE '%$search%' OR nombre LIKE '%$search%' OR apellido LIKE '%$search%' OR estado LIKE '%$search%')) ORDER BY nombre ASC LIMIT $start, $registers";
+      } else {
+        $query = "SELECT SQL_CALC_FOUND_ROWS * FROM usuario WHERE idUsuario != '$id' AND idUsuario != '1' ORDER BY nombre ASC LIMIT $start, $registers";
+      }
+
+      $connection = MainModel::connect();
+
+      $data = $connection->query($query);
+      $data = $data->fetchAll();
+
+      $total = $connection->query("SELECT FOUND_ROWS()");
+      $total = (int)$total->fetchColumn();
+      
+      $numPages = ceil($total / $registers);
+
+      $table .= '
+        <div class="table-responsive">
+          <table class="table table-dark table-sm">
+            <thead>
+              <tr class="text-center roboto-medium">
+                <th>#</th>
+                <th>DNI</th>
+                <th>NOMBRE</th>
+                <th>USUARIO</th>
+                <th>EMAIL</th>
+                <th>PRIVILEGIO</th>
+                <th>ACTUALIZAR</th>
+                <th>ELIMINAR</th>
+              </tr>
+            </thead>
+            <tbody>';
+
+      if($total > 0 && $page <= $numPages) {
+        $counter = $start + 1;
+
+        foreach ($data as $row) {
+          $typeUser = PRIVILEGIOS[$row['privilegio']];
+          $classUser = CLASES[$row['privilegio']];
+
+          $table .= '
+              <tr class="text-center">
+                <td>'.$counter.'</td>
+                <td>'.$row['dni'].'</td>
+                <td>'.$row['nombre'] . ' ' . $row['apellido'].'</td>
+                <td>'.$row['username'].'</td>
+                <td>'.$row['email'].'</td>
+                <td><span class="badge badge-'.$classUser.'">'.$typeUser.'</span></td>
+                <td>
+                  <a href="'.SERVERURL.'user-update/'.MainModel::encryption($row['idUsuario']).'" class="btn btn-success">
+                      <i class="fas fa-sync-alt"></i>	
+                  </a>
+                </td>
+                <td>
+                  <form class="formAjax" method="POST" data-form="delete" action="'.SERVERURL.'ajax/userAjax.php">
+                    <button type="submit" class="btn btn-warning">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                  </form>
+                </td>
+              </tr>';
+              
+          $counter++;
+        }
+      } else {
+        if($total > 0) {
+          $table .= '
+              <tr class="text-center" >
+                <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm d-block mx-auto mb-4">Haga clic aca para recargar el listado.</a>
+              </tr>';
+        } else {
+          $table .= '
+              <tr class="text-center" >
+                <td>No hay registros en el sistema</td>
+              </tr>';
+        }
+      }
+      $table .= '
+            </tbody>
+          </table>
+        </div>';
+
+      if($total > 0 && $page <= $numPages) {
+        $table .= MainModel::paginationTables($page, $numPages, $url, BUTTONSPAGINATOR);
+      }
+
+      return $table;
+    }
   }

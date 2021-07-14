@@ -23,6 +23,8 @@
     } else {
       session_start(["name" => NAMESESSION]);
 
+      $urlArray = explode("/", $_GET['view']);
+
       require_once "./controllers/loginController.php";
       $loginController = new LoginController();
 

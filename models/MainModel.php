@@ -56,7 +56,7 @@
     }
 
     /* encriptar cadenas */
-    public function encryption($string){
+    protected static function encryption($string){
 			$output = false;
 			$key = hash('sha256', SECRET_KEY);
 			$iv = substr(hash('sha256', SECRET_IV), 0, 16);
@@ -143,10 +143,10 @@
       <ul class="pagination justify-content-center">';
 
       if($page == 1) {
-        $table .= '<li class="page-item disabled"><a class="page-link"><i class="fa fa-angle-double-left"></i></a></li>';
+        $pagination .= '<li class="page-item disabled"><a class="page-link"><i class="fa fa-angle-double-left"></i></a></li>';
       } else {
-        $table .= '<li class="page-item"><a class="page-link" href="'.$url.'1/"><i class="fa fa-angle-double-left"></i></a></li>
-        <li class="page-item"><a class="page-link" href="'.$url.($page - 1).'/">Anterior</a></li>';
+        $pagination .= '<li class="page-item"><a class="page-link" href="'.$url.'1"><i class="fa fa-angle-double-left"></i></a></li>
+        <li class="page-item"><a class="page-link" href="'.$url.($page - 1).'">Anterior</a></li>';
       }
 
       $countIterations = 0;
@@ -156,19 +156,19 @@
         }
 
         if($page == $i) {
-          $pagination .= '<li class="page-item"><a class="page-link active" href="'.$url.$i.'/">'.$i.'</a></li>';
+          $pagination .= '<li class="page-item"><a class="page-link active" href="'.$url.$i.'">'.$i.'</a></li>';
         } else {
-          $pagination .= '<li class="page-item"><a class="page-link" href="'.$url.$i.'/">'.$i.'</a></li>';
+          $pagination .= '<li class="page-item"><a class="page-link" href="'.$url.$i.'">'.$i.'</a></li>';
         }
 
         $countIterations++;
       }
 
       if($page == $numPages) {
-        $table .= '<li class="page-item disabled"><a class="page-link"><i class="fa fa-angle-double-right"></i></a></li>';
+        $pagination .= '<li class="page-item disabled"><a class="page-link"><i class="fa fa-angle-double-right"></i></a></li>';
       } else {
-        $table .= '<li class="page-item"><a class="page-link" href="'.$url.($page + 1).'/">Siguiente</a></li>
-        <li class="page-item"><a class="page-link" href="'.$url.$numPages.'/"><i class="fa fa-angle-double-right"></i></a></li>';
+        $pagination .= '<li class="page-item"><a class="page-link" href="'.$url.($page + 1).'">Siguiente</a></li>
+        <li class="page-item"><a class="page-link" href="'.$url.$numPages.'"><i class="fa fa-angle-double-right"></i></a></li>';
       }
 
       $pagination .= '</ul></nav>';
