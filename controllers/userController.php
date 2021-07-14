@@ -180,6 +180,7 @@
 
       if($total > 0 && $page <= $numPages) {
         $counter = $start + 1;
+        $regInit = $start + 1;
 
         foreach ($data as $row) {
           $typeUser = PRIVILEGIOS[$row['privilegio']];
@@ -200,6 +201,7 @@
                 </td>
                 <td>
                   <form class="formAjax" method="POST" data-form="delete" action="'.SERVERURL.'ajax/userAjax.php">
+                    <input type="hidden" name="usuario-id-del" value="'.MainModel::encryption($row['idUsuario']).'" />
                     <button type="submit" class="btn btn-warning">
                         <i class="far fa-trash-alt"></i>
                     </button>
@@ -209,11 +211,14 @@
               
           $counter++;
         }
+        $regFinal = $counter - 1;
       } else {
         if($total > 0) {
           $table .= '
-              <tr class="text-center" >
-                <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm d-block mx-auto mb-4">Haga clic aca para recargar el listado.</a>
+              <tr class="text-center">
+                <td colspan="8 class="text-center py-3">
+                  <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm">Haga clic aca para recargar el listado.</a>
+                </td>
               </tr>';
         } else {
           $table .= '
@@ -228,9 +233,50 @@
         </div>';
 
       if($total > 0 && $page <= $numPages) {
+        $table .= '<p class="text-right">Mostrando usuarios '.$regInit.' al '.$regFinal.' de un total de '.$total.'</p>';
+
         $table .= MainModel::paginationTables($page, $numPages, $url, BUTTONSPAGINATOR);
       }
 
       return $table;
+    }
+
+    // eliminar usuario
+    public function deleteUserController() {
+      $idUsuario = MainModel::decryption($_POST['usuario-id-del']);
+      $idUsuario = MainModel::clearString($idUsuario);
+
+      if($idUsuario == 1) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No podemos eliminar al usuario principal del sistema.", "error"));
+
+        exit();
+      }
+
+      // comprobamos al usuario en la db
+      $checUser = MainModel::executeSimpleQuery("SELECT idUsuario FROM usuario WHERE idUsuario = '$idUsuario'");
+      if($checUser->rowCount() <= 0) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El usuario que intenta eliminar no existe en el sistema.", "error"));
+
+        exit();
+      }
+
+      // comprobar privilegio
+      session_start(['name' => NAMESESSION]);
+      if($_SESSION['privilegio'] != 1) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No tienes los permisos necesarios para realizar esta operación.", "error"));
+
+        exit();
+      }
+
+      // eliminamos al usuario
+      $deleteUser = UserModel::deleteUserModel($idUsuario);
+
+      if($deleteUser->rowCount() == 1) {
+        $message = MainModel::alertContent("recargar", "Usuario Eliminado", "El usuario ha sido eliminado del sistema con exito.", "success");
+      } else {
+        $message = MainModel::alertContent("simple", "Algo salio mal.", "No hemos podido eliminar al usuario, por favor intente nuevamente.", "error");
+      }
+
+      echo json_encode($message);
     }
   }

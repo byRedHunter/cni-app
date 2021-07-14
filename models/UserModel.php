@@ -19,4 +19,14 @@
 
       return $query;
     }
+
+    // eliminar usuario
+    protected static function deleteUserModel($idUsuario) {
+      $query = MainModel::connect()->prepare("DELETE FROM usuario WHERE idUsuario = :idUsuario");
+      $query->bindParam(":idUsuario", $idUsuario);
+
+      $query->execute();
+
+      return $query;
+    }
   }
