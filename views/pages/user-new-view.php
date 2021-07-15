@@ -66,7 +66,7 @@
 					<div class="col-12 col-md-6">
 						<div class="form-group">
 							<label for="usuario-usuario" class="bmd-label-floating">Nombre de usuario <small> (*)</small></label>
-							<input type="text" pattern="[a-zA-Z0-9]{5,35}" class="form-control" name="usuario-username-reg" id="usuario-usuario" maxlength="35" minlength="5">
+							<input type="text" pattern="[a-zA-Z0-9]{5,35}" class="form-control" name="usuario-username-reg" id="usuario-usuario" maxlength="35" minlength="5" required>
 						</div>
 					</div>
 					<div class="col-12 col-md-6">
