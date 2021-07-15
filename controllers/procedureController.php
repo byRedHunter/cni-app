@@ -236,8 +236,6 @@
         $counter = $start + 1;
         $regInit = $start + 1;
 
-        $regFinal = $counter - 1;
-
         foreach ($data as $row) {
           $tipoDocumento = DOCUMENTOS[$row['tipoDocumento']];
           $classes = CLASES[$row['tipoDocumento']];
@@ -270,6 +268,8 @@
           
           $counter++;
         }
+
+        $regFinal = $counter - 1;
       } else {
         if($total > 0) {
           $table .= '
