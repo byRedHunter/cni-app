@@ -27,12 +27,13 @@
 
 <div class="container-fluid">
 <form class="form-neon" action="">
+		<input type="hidden" name="modulo" value="book">
 		<div class="container-fluid">
 			<div class="row justify-content-md-center">
 				<div class="col-12 col-md-6">
 					<div class="form-group bmd-form-group">
 						<label for="inputSearch" class="bmd-label-floating">¿Qué libro estas buscando?</label>
-						<input type="text" class="form-control" name="busqueda-" id="inputSearch" maxlength="30">
+						<input type="text" class="form-control" name="busqueda-inicial" id="inputSearch" maxlength="30">
 					</div>
 				</div>
 				<div class="col-12">
@@ -46,18 +47,22 @@
 </div>
 
 <div class="container-fluid">
-	<div class="row justify-content-md-center">
-		<div class="col-12 col-md-6">
-			<p class="text-center" style="font-size: 20px;">
-				Resultados de la busqueda <strong>“Buscar”</strong>
-			</p>
+	<form action="">
+		<input type="hidden" name="modulo" value="book">
+		<input type="hidden" name="eliminar-busqueda" value="eliminar">
+		<div class="row justify-content-md-center">
+			<div class="col-12 col-md-6">
+				<p class="text-center" style="font-size: 20px;">
+					Resultados de la busqueda <strong>“Buscar”</strong>
+				</p>
+			</div>
+			<div class="col-12">
+				<p class="text-center" style="margin-top: 20px;">
+					<button type="submit" class="btn btn-raised btn-danger"><i class="far fa-trash-alt"></i> &nbsp; ELIMINAR BÚSQUEDA</button>
+				</p>
+			</div>
 		</div>
-		<div class="col-12">
-			<p class="text-center" style="margin-top: 20px;">
-				<button type="submit" class="btn btn-raised btn-danger"><i class="far fa-trash-alt"></i> &nbsp; ELIMINAR BÚSQUEDA</button>
-			</p>
-		</div>
-	</div>
+	</form>
 </div>
 
 <div class="container-fluid">

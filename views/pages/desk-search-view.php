@@ -23,18 +23,19 @@
 
 <div class="container-fluid">
 	<form class="form-neon" action="">
+		<input type="hidden" name="modulo" value="desk">
 		<div class="container-fluid">
 			<div class="row justify-content-md-center">
 				<div class="col-12 col-md-4">
 					<div class="form-group">
 						<label for="busqueda_inicio_prestamo" >Fecha inicial (día/mes/año)</label>
-						<input type="date" class="form-control" name="busqueda_inicio_prestamo" id="busqueda_inicio_prestamo" maxlength="30">
+						<input type="date" class="form-control" name="fecha-inicio" id="busqueda_inicio_prestamo" maxlength="30">
 					</div>
 				</div>
 				<div class="col-12 col-md-4">
 					<div class="form-group">
 						<label for="busqueda_final_prestamo" >Fecha final (día/mes/año)</label>
-						<input type="date" class="form-control" name="busqueda_final_prestamo" id="busqueda_final_prestamo" maxlength="30">
+						<input type="date" class="form-control" name="fecha-final" id="busqueda_final_prestamo" maxlength="30">
 					</div>
 				</div>
 				<div class="col-12">
@@ -48,7 +49,8 @@
 </div>
 <div class="container-fluid">
 	<form action="">
-		<input type="hidden" name="eliminar_busqueda_prestamo" value="eliminar">
+		<input type="hidden" name="modulo" value="desk">
+		<input type="hidden" name="eliminar-busqueda" value="eliminar">
 		<div class="container-fluid">
 			<div class="row justify-content-md-center">
 				<div class="col-12 col-md-6">
