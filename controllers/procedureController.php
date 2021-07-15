@@ -171,4 +171,131 @@
 
       return $query;
     }
+
+    // paginacion de solicitudes
+    public function paginatorProceduresController($page, $registers, $privilegio, $url, $type, $search) {
+      $page = MainModel::clearString($page);
+      $registers = MainModel::clearString($registers);
+
+      $type = MainModel::clearString($type);
+
+      $url = MainModel::clearString($url);
+      $url = SERVERURL . $url . "/";
+
+      $search = MainModel::clearString($search);
+      $table = "";
+
+      $page = (isset($page) && $page > 0) ? (int)$page : 1;
+      $start = ($page > 0) ? (($page * $registers) - $registers) : 0;
+
+      // si hay termino de busqueda
+      if(isset($search) && $search != "") {
+        // hay un termino
+        $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.asunto, r.tipoDocumento, r.idRecepcion, r.fecha, r.estado, r.archivo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante WHERE r.asunto LIKE '%$search%' OR r.fecha LIKE '%$search%' ORDER BY r.fecha DESC LIMIT $start, $registers";
+      } else {
+        // que tipo de busqueda es
+        if($type == "recientes") {
+          // recientes
+          $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.idRecepcion, r.asunto, r.tipoDocumento, r.fecha, r.estado, r.archivo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante WHERE r.fecha <= NOW() AND r.fecha >= date_add(NOW(), INTERVAL -1 DAY) ORDER BY r.fecha DESC LIMIT $start, $registers";
+        } else {
+          // todos
+          $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.idRecepcion, r.asunto, r.tipoDocumento, r.fecha, r.estado, r.archivo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante ORDER BY r.fecha DESC LIMIT $start, $registers";
+        }
+      }
+
+      $connection = MainModel::connect();
+
+      $data = $connection->query($query);
+      $data = $data->fetchAll();
+
+      $total = $connection->query("SELECT FOUND_ROWS()");
+      $total = (int)$total->fetchColumn();
+      
+      $numPages = ceil($total / $registers);
+
+      $table .= '
+        <div class="table-responsive">
+          <table class="table table-dark table-sm">
+            <thead>
+              <tr class="text-center roboto-medium">
+                <th>#</th>
+                <th>ASUNTO</th>
+                <th>TIPO</th>
+                <th>FECHA</th>
+                <th>SOLICITANTE</th>
+                <th>EMAIL</th>
+                <th>CELULAR</th>
+                <th>ESTADO</th>
+                <th>DOCUMENTO</th>
+                <th>RESPONDIDO</th>
+              </tr>
+            </thead>
+            <tbody>';
+      
+      if($total > 0 && $page <= $numPages) {
+        $counter = $start + 1;
+        $regInit = $start + 1;
+
+        $regFinal = $counter - 1;
+
+        foreach ($data as $row) {
+          $tipoDocumento = DOCUMENTOS[$row['tipoDocumento']];
+          $classes = CLASES[$row['tipoDocumento']];
+          $classState = ['Nuevo' => 'success', 'Respondido' => 'warning'];
+
+          $table .= '
+          <tr class="text-center" >
+            <td>'.$counter.'</td>
+            <td>'.$row['asunto'].'</td>
+            <td><span class="badge badge-'.$classes.'">'.$tipoDocumento.'</span></td>
+            <td>'.$row['fecha'].'</td>
+            <td>'.$row['nombre'] . ' ' . $row['apellido'].'</td>
+            <td>'.$row['email'].'</td>
+            <td>'.$row['celular'].'</td>
+            <td><span class="badge badge-'.$classState[$row['estado']].'">'.$row['estado'].'</span></td>
+            <td>
+              <a href="'.SERVERURL.'views/assets/pdf/'.$row['archivo'].'" class="btn btn-info" target="_blank">
+                  <i class="fas fa-file-pdf"></i>	
+              </a>
+            </td>
+            <td>
+              <form class="formAjax" method="POST" data-form="update" action="'.SERVERURL.'ajax/procedureAjax.php">
+                <input type="hidden" name="id-recepcion" value="'.MainModel::encryption($row['idRecepcion']).'" />
+                <button type="submit" class="btn btn-warning">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+              </form>
+            </td>
+          </tr>';
+          
+          $counter++;
+        }
+      } else {
+        if($total > 0) {
+          $table .= '
+              <tr class="text-center">
+                <td colspan="10" class="text-center py-3">
+                  <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm">Haga clic aca para recargar el listado.</a>
+                </td>
+              </tr>';
+        } else {
+          $table .= '
+              <tr>
+                <td colspan="10" class="text-center text-primary font-weight-bold py-4" >No hay registros en el sistema</td>
+              </tr>';
+        }
+      }
+      $table .= '
+            </tbody>
+          </table>
+        </div>';
+
+      if($total > 0 && $page <= $numPages) {
+        $table .= '<p class="text-right">Mostrando usuarios '.$regInit.' al '.$regFinal.' de un total de '.$total.'</p>';
+
+        $table .= MainModel::paginationTables($page, $numPages, $url, BUTTONSPAGINATOR);
+      }
+
+      return $table;
+    }
   }
