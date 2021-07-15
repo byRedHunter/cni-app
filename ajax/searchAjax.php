@@ -1,6 +1,6 @@
 <?php
-  session_start(['name', NAMESESSION]);
   require_once "../config/app.php";
+  session_start(["name" => NAMESESSION]);
 
   if (isset($_POST['busqueda-inicial']) || isset($_POST['eliminar-busqueda']) || isset($_POST['fecha-inicio']) || isset($_POST['fecha-final'])) {
     $dataUrl = [
@@ -53,8 +53,8 @@
           exit();
         }
 
-        $_SESSION[$dateInit = $_POST['fecha-inicio']];
-        $_SESSION[$dateFinal = $_POST['fecha-final']];
+        $_SESSION[$dateInit] = $_POST['fecha-inicio'];
+        $_SESSION[$dateFinal] = $_POST['fecha-final'];
       }
 
       // eliminar busqueda
@@ -79,7 +79,7 @@
           exit();
         }
 
-        $_SESSION[$nameSearch = $_POST['fbusqueda-inicial']];
+        $_SESSION[$nameSearch] = $_POST['busqueda-inicial'];
       }
 
       // eliminar busqueda

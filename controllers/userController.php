@@ -216,14 +216,14 @@
         if($total > 0) {
           $table .= '
               <tr class="text-center">
-                <td colspan="8 class="text-center py-3">
+                <td colspan="8" class="text-center py-3">
                   <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm">Haga clic aca para recargar el listado.</a>
                 </td>
               </tr>';
         } else {
           $table .= '
-              <tr class="text-center" >
-                <td>No hay registros en el sistema</td>
+              <tr>
+                <td colspan="8" class="text-center text-primary font-weight-bold py-4" >No hay registros en el sistema</td>
               </tr>';
         }
       }
