@@ -20,7 +20,7 @@
     protected static function getListBooksModel($datos) {      
       $filtro = "%" . $datos['name'] . "%";
 
-      $query = MainModel::connect()->prepare("SELECT * FROM libro WHERE titulo LIKE :filtro");
+      $query = MainModel::connect()->prepare("SELECT * FROM libro WHERE titulo LIKE :filtro AND estado = 'Disponible'");
 
       $query->bindParam(":filtro", $filtro);
 

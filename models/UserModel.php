@@ -43,4 +43,23 @@
 
       return $query;
     }
+
+    // update user
+    protected static function updateUserModel($datos) {
+      $query = MainModel::connect()->prepare("UPDATE usuario SET dni = :dni, nombre = :nombre, apellido = :apellido, username = :username, email = :email, clave = :clave, privilegio = :privilegio, estado = :estado WHERE idUsuario = :idUsuario");
+
+      $query->bindParam(":dni", $datos['dni']);
+      $query->bindParam(":nombre", $datos['nombre']);
+      $query->bindParam(":apellido", $datos['apellido']);
+      $query->bindParam(":username", $datos['username']);
+      $query->bindParam(":email", $datos['email']);
+      $query->bindParam(":clave", $datos['clave']);
+      $query->bindParam(":privilegio", $datos['privilegio']);
+      $query->bindParam(":estado", $datos['estado']);
+      $query->bindParam(":idUsuario", $datos['idUsuario']);
+
+      $query->execute();
+
+      return $query;
+    }
   }

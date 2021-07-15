@@ -288,4 +288,190 @@
 
       return UserModel::getUserModel($type, $idUsuario);
     }
+
+    // update user
+    public function updateUserController() {
+      $idUsuario = MainModel::decryption($_POST['usuario-id-up']);
+      $idUsuario = MainModel::clearString($idUsuario);
+
+      // comprobamos usuario en la DB
+      $checUser = MainModel::executeSimpleQuery("SELECT * FROM usuario WHERE idUsuario = '$idUsuario'");
+
+      if($checUser->rowCount() <= 0) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No hemos encontrado al usuario en el sistema.", "error"));
+
+        exit();
+      } else {
+        $row = $checUser->fetch();
+      }
+
+      $dni = MainModel::clearString($_POST['usuario-dni-up']);
+      $nombre = MainModel::clearString($_POST['usuario-nombre-up']);
+      $apellido = MainModel::clearString($_POST['usuario-apellido-up']);
+
+      $username = MainModel::clearString($_POST['usuario-usuario-up']);
+      $email = MainModel::clearString($_POST['usuario-email-up']);
+
+      $estado = isset($_POST['usuario-estado-up']) ? MainModel::clearString($_POST['usuario-estado-up']) : $row['estado'];
+      $privilegio = isset($_POST['usuario-privilegio-up']) ? MainModel::clearString($_POST['usuario-privilegio-up']) : $row['privilegio'];
+
+      $usuarioAdmin = MainModel::clearString($_POST['usuario-admin']);
+      $claveAdmin = MainModel::clearString($_POST['clave-admin']);
+
+      $tipoCuenta = MainModel::clearString($_POST['tipo-cuenta']);
+
+      if($dni == "" || $nombre == "" || $apellido == "" || $username == "" || $usuarioAdmin == "" || $claveAdmin == "") {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No has llenado todos los campos obligatorios.", "error"));
+
+        exit();
+      }
+
+      // verificar integridad de los datos
+      if(MainModel::verifyInfo("[0-9]{8}", $dni)) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El DNI no coincide con el formato solicitado.", "error"));
+
+        exit();
+      }
+
+      if(MainModel::verifyInfo("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,35}", $nombre)) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El NOMBRE no coincide con el formato solicitado.", "error"));
+
+        exit();
+      }
+
+      if(MainModel::verifyInfo("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,35}", $apellido)) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El APELLIDO no coincide con el formato solicitado.", "error"));
+
+        exit();
+      }
+
+      if(MainModel::verifyInfo("[a-zA-Z0-9]{5,35}", $username)) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El NOMBRE DE USUARIO no coincide con el formato solicitado.", "error"));
+
+        exit();
+      }
+
+      if(MainModel::verifyInfo("[a-zA-Z0-9]{5,35}", $usuarioAdmin)) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Tu NOMBRE DE USUARIO no coincide con el formato solicitado.", "error"));
+
+        exit();
+      }
+
+      if(MainModel::verifyInfo("[a-zA-Z0-9$@.-]{7,100}", $claveAdmin)) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Tu CLAVE no coincide con el formato solicitado.", "error"));
+
+        exit();
+      }
+      $claveAdmin = MainModel::encryption($claveAdmin);
+
+      if($privilegio < 1 || $privilegio > 3) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El PRIVILEGIO seleccionado no es válido.", "error"));
+
+        exit();
+      }
+
+      if($estado != "Activo" && $estado != "Desabilitado") {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El ESTADO seleccionado no es válido.", "error"));
+
+        exit();
+      }
+      
+      // verificar si el dni ya existe
+      if($dni != $row['dni']) {
+        $checkDni = MainModel::executeSimpleQuery("SELECT dni FROM usuario WHERE dni = '$dni'");
+        if($checkDni->rowCount() > 0) {
+          echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El DNI ingresado ya existe.", "error"));
+
+          exit();
+        }
+      }
+
+      // verificar si existe nombre de usuario
+      if($username != $row['username']) {
+        $checUsername = MainModel::executeSimpleQuery("SELECT username FROM usuario WHERE username = '$username'");
+        if($checUsername->rowCount() > 0) {
+          echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El NOMBRE DE USUARIO ingresado ya existe.", "error"));
+
+          exit();
+        }
+      }
+
+      // verificamos email
+      if($email != $row['email'] && $email != "") {
+        if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+          $checkEmail = MainModel::executeSimpleQuery("SELECT email FROM usuario WHERE email = '$email'");
+          if($checkEmail->rowCount() > 0) {
+            echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El nuevo EMAIL ingresado ya existe.", "error"));
+
+            exit();
+          }
+        } else {
+          echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Ha ingresado un EMAIL no válido.", "error"));
+
+          exit();
+        }
+      }
+
+      // comprobar claves
+      if($_POST['usuario-clave-nueva-1'] != "" || $_POST['usuario-clave-nueva-1'] != "") {
+        if($_POST['usuario-clave-nueva-1'] != $_POST['usuario-clave-nueva-1']) {
+          echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Las CLAVES NUEVAS no coinciden.", "error"));
+
+          exit();
+        } else {
+          if(MainModel::verifyInfo("[a-zA-Z0-9$@.-]{7,100}", $_POST['usuario-clave-nueva-1']) || MainModel::verifyInfo("[a-zA-Z0-9$@.-]{7,100}", $_POST['usuario-clave-nueva-2'])) {
+            echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Las CLAVES NUEVAS no coinciden con el formato solicitado.", "error"));
+  
+            exit();
+          }
+
+          $clave = MainModel::encryption($_POST['usuario-clave-nueva-1']);
+        }
+      } else {
+        $clave = $row['clave'];
+      }
+
+      // comprobar credenciales para poder actualizar
+      if($tipoCuenta == 'propia') {
+        $checkAccount = MainModel::executeSimpleQuery("SELECT idUsuario FROM usuario WHERE username = '$usuarioAdmin' AND clave = '$claveAdmin' AND idUsuario = '$idUsuario'");
+      } else {
+        session_start(['name' => NAMESESSION]);
+        if($_SESSION['privilegio'] != 1) {
+          echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No tienes los permisos necesarios para realizar esta operacion.", "error"));
+
+          exit();
+        }
+
+        $checkAccount = MainModel::executeSimpleQuery("SELECT idUsuario FROM usuario WHERE username = '$usuarioAdmin' AND clave = '$claveAdmin'");
+      }
+
+      if($checkAccount->rowCount() <= 0) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Nombre y clave del administrador no es valido.", "error"));
+
+        exit();
+      }
+
+      // datos para actualizar
+      $userInfo = [
+        "dni" => $dni,
+        "nombre" => $nombre,
+        "apellido" => $apellido,
+        "username" => $username,
+        "email" => $email,
+        "clave" => $clave,
+        "privilegio" => $privilegio,
+        "estado" => $estado,
+        "idUsuario" => $idUsuario,
+      ];
+      // enviamos la informacion al modelo
+      $updateUser = UserModel::updateUserModel($userInfo);
+
+      if($updateUser->rowCount() == 1) {
+        $message = MainModel::alertContent("recargar", "Usuario Actualizado", "Los datos del usuario han sido actualizados con exito.", "success");
+      } else {
+        $message = MainModel::alertContent("simple", "Algo salio mal.", "No hemos podido actualizar los datos del usuario.", "error");
+      }
+
+      echo json_encode($message);
+    }
   }

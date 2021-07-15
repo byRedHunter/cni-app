@@ -44,7 +44,7 @@
 			$row = $userInfo->fetch();
 	?>
 	<form action="<?php echo SERVERURL; ?>ajax/userAjax.php" data-set="update" class="form-neon formAjax" method="POST" autocomplete="off">
-		<input type="hidden" name="usuario_id_up" value="<?php echo $urlArray[1] ?>">
+		<input type="hidden" name="usuario-id-up" value="<?php echo $urlArray[1] ?>">
 	
 		<fieldset>
 			<legend><i class="far fa-address-card"></i> &nbsp; Información personal</legend>
@@ -98,7 +98,7 @@
 					<div class="col-12">
 						<div class="form-group">
 							<span>Estado del Usuario &nbsp; <?php if($row['estado'] == "Activo") { echo '<span class="badge badge-info">Activo</span>'; } else { echo '<span class="badge badge-danger">Desabilitado</span>'; } ?></span>
-							<select class="form-control" name="usuario-estado-up">
+							<select class="form-control" name="usuario-estado-up" required>
 								<option value="Activo" <?php if($row['estado'] == "Activo") {echo 'selected';} ?>>Activo</option>
 								<option value="Deshabilitado" <?php if($row['estado'] == "Desabilitado") {echo 'selected';} ?>>Deshabilitado</option>
 							</select>
@@ -145,7 +145,7 @@
 						<p><span class="badge badge-success">Secretaria</span> Solo permisos para el control de mesa de partes</p>
 						<p><span class="badge badge-dark">Jefe Biblioteca</span> Solo permisos para el control de la biblioteca</p>
 						<div class="form-group">
-							<select class="form-control" name="usuario-privilegio-up">
+							<select class="form-control" name="usuario-privilegio-up" required>
 								<option value="1" <?php if($row['privilegio'] == 1) { echo 'selected'; } ?> >
 									Administrador <?php if($row['privilegio'] == 1) { echo '(Actual)'; } ?>
 								</option>

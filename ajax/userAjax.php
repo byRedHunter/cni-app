@@ -2,7 +2,7 @@
   $ajaxRequest = true;
   require_once "../config/app.php";
 
-  if(isset($_POST['usuario-dni-reg']) || isset($_POST['usuario-id-del'])) {
+  if(isset($_POST['usuario-dni-reg']) || isset($_POST['usuario-id-del']) || isset($_POST['usuario-id-up'])) {
     require_once "../controllers/userController.php";
     $user = new UserController();
 
@@ -14,6 +14,11 @@
     // eliminar usuario
     if(isset($_POST['usuario-id-del'])) {
       echo $user->deleteUserController();
+    }
+
+    // editar usuario
+    if(isset($_POST['usuario-id-up'])) {
+      echo $user->updateUserController();
     }
   } else {
     session_start(["name" => NAMESESSION]);

@@ -106,6 +106,14 @@
         }
       }
 
+      $changeBookState = MainModel::executeSimpleQuery("UPDATE libro SET estado = 'Reservado' WHERE idLibro = '$libroId'");
+
+      if($changeBookState->rowCount() < 1) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Hubo un problema al reservar su libro.", "error"));
+
+        exit();
+      }
+
       $libraryInfo = [
         "tipoSolicitante" => $tipoUsuario,
         "fechaRecojo" => $fechaRecojo,
@@ -143,7 +151,7 @@
       } else {
         $message = [
           'error' => true,
-          'message' => 'No existe libros',
+          'message' => 'No hay libros disponibles',
           'data' => []
         ];
       }
