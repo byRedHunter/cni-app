@@ -182,7 +182,7 @@
       $start = ($page > 0) ? (($page * $registers) - $registers) : 0;
 
       // todos
-      $query = "SELECT SQL_CALC_FOUND_ROWS sl.idSolicitante, sl.tipoSolicitante, sl.fechaRecojo, sl.fechaDevolucion, sl.codigo, s.dni, s.nombre, s.apellido, s.email, s.celular, l.idLibro, l.titulo, l.categoria, l.estado  FROM solicitud_libro as sl INNER JOIN solicitante as s ON sl.idSolicitante = s.idSolicitante INNER JOIN libro as l ON sl.idLibro = l.idLibro ORDER BY sl.fechaRecojo DESC LIMIT $start, $registers";
+      $query = "SELECT SQL_CALC_FOUND_ROWS sl.idSolicitante, sl.tipoSolicitante, sl.fechaRecojo, sl.fechaDevolucion, sl.codigo, s.dni, s.nombre, s.apellido, s.email, s.celular, l.idLibro, l.titulo, l.categoria, l.estado  FROM solicitud_libro as sl INNER JOIN solicitante as s ON sl.idSolicitante = s.idSolicitante INNER JOIN libro as l ON sl.idLibro = l.idLibro ORDER BY l.estado DESC LIMIT $start, $registers";
       
 
       $connection = MainModel::connect();
@@ -224,10 +224,10 @@
         $regInit = $start + 1;
 
         foreach ($data as $row) {
-          $tipoSolicitante = $row['tipoSolicitante'] == 1 ? 'Estudiante' : 'Profesor';
+          $tipoSolicitante = $row['tipoSolicitante'] == 1 ? 'Profesor' : 'Estudiante';
           $classes = CLASES[$row['tipoSolicitante']];
 
-          $classState = ['Libre' => 'success', 'Reservado' => 'warning', 'Entregado' => 'dark'];
+          $classState = ['Disponible' => 'success', 'Reservado' => 'warning', 'Entregado' => 'dark'];
 
           $state = $row['estado'] != 'Reservado' ? 'disabled' : null;
 

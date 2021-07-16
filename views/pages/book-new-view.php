@@ -1,3 +1,12 @@
+<?php
+	// si ingresa una persona de desk
+	if($_SESSION['privilegio'] == 2) {
+		echo $loginController->forceCloseSessionController();
+
+		exit();
+	}
+?>
+
 <div class="full-box page-header">
     <h3 class="text-left">
         <i class="fas fa-book fa-fw"></i> &nbsp; NUEVO LIBRO
