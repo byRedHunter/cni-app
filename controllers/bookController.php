@@ -134,7 +134,7 @@
       $start = ($page > 0) ? (($page * $registers) - $registers) : 0;
 
       if(isset($search) && $search != "") {
-        $query = "SELECT SQL_CALC_FOUND_ROWS * FROM libro WHERE titulo LIKE '%$search%' OR autor LIKE '%$search%' OR serie LIKE '%$search%' OR categoria LIKE '%$search%' ORDER BY titulo ASC LIMIT $start, $registers";
+        $query = "SELECT SQL_CALC_FOUND_ROWS * FROM libro WHERE titulo LIKE '%$search%' OR autor LIKE '%$search%' OR serie LIKE '%$search%' OR categoria LIKE '%$search%' OR estado LIKE '%$search%' ORDER BY titulo ASC LIMIT $start, $registers";
       } else {
         $query = "SELECT SQL_CALC_FOUND_ROWS * FROM libro ORDER BY titulo ASC LIMIT $start, $registers";
       }
