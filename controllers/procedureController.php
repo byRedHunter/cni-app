@@ -240,6 +240,7 @@
           $tipoDocumento = DOCUMENTOS[$row['tipoDocumento']];
           $classes = CLASES[$row['tipoDocumento']];
           $classState = ['Nuevo' => 'success', 'Respondido' => 'warning'];
+          $state = $row['estado'] == 'Respondido' ? 'disabled' : null;
 
           $table .= '
           <tr class="text-center" >
@@ -259,7 +260,7 @@
             <td>
               <form class="formAjax" method="POST" data-form="update" action="'.SERVERURL.'ajax/procedureAjax.php">
                 <input type="hidden" name="id-recepcion" value="'.MainModel::encryption($row['idRecepcion']).'" />
-                <button type="submit" class="btn btn-warning">
+                <button type="submit" class="btn btn-warning" '.$state.'>
                     <i class="fas fa-sync-alt"></i>
                 </button>
               </form>
@@ -297,5 +298,44 @@
       }
 
       return $table;
+    }
+
+    // actualizamos el estado
+    public function updateStateProcedure() {
+      $idRecepcion = MainModel::decryption($_POST['id-recepcion']);
+      $idRecepcion = MainModel::clearString($idRecepcion);
+
+      if($idRecepcion == "") {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Usted esta intentando hacer daño al sistema, no lo haga.", "error"));
+
+        exit();
+      }
+
+      // comprobamos si existe la recepcion
+      $checkRecepcion = MainModel::executeSimpleQuery("SELECT idRecepcion, estado FROM recepcion WHERE idRecepcion = '$idRecepcion'");
+
+      if($checkRecepcion->rowCount() <= 0) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No hemos encontrado la solicitud en el sistema.", "error"));
+
+        exit();
+      } else {
+        $row = $checkRecepcion->fetch();
+      }
+
+      if($row['estado'] == "Respondido") {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Este documento ya ha sido respondido.", "error"));
+
+        exit();
+      }
+
+      $updateState = ProcedureModel::updateStateProcedureModel($idRecepcion);
+
+      if($updateState->rowCount() == 1) {
+        $message = MainModel::alertContent("recargar", "Estado Actualizado", "Ud. ha marcado esta solicitud como RESPONDIDO.", "success");
+      } else {
+        $message = MainModel::alertContent("simple", "Algo salio mal.", "No hemos podido actualizar el estado del documento.", "error");
+      }
+
+      echo json_encode($message);
     }
   }

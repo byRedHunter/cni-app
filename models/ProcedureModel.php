@@ -16,4 +16,15 @@
 
       return $query;
     }
+
+    // editar estado del documento
+    protected static function updateStateProcedureModel($idRecepcion) {
+      $query = MainModel::connect()->prepare("UPDATE recepcion SET estado = 'Respondido' WHERE idRecepcion = :idRecepcion");
+
+      $query->bindParam(":idRecepcion", $idRecepcion);
+
+      $query->execute();
+
+      return $query;
+    }
   }
