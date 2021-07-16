@@ -72,4 +72,50 @@
 
       echo json_encode($message);
     }
+
+    // actualizamos el estado
+    public function updateStateBook() {
+      $idLibro = MainModel::decryption($_POST['id-libro']);
+      $idLibro = MainModel::clearString($idLibro);
+
+      if($idLibro == "") {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Usted esta intentando hacer daño al sistema, no lo haga.", "error"));
+
+        exit();
+      }
+
+      // comprobamos si existe la recepcion
+      $checkBook = MainModel::executeSimpleQuery("SELECT idLibro, estado FROM libro WHERE idLibro = '$idLibro'");
+
+      if($checkBook->rowCount() <= 0) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No hemos encontrado el libro en el sistema.", "error"));
+
+        exit();
+      } else {
+        $row = $checkBook->fetch();
+      }
+
+      if($row['estado'] == "Reservado") {
+        $state = "Entregado";
+      }
+
+      if($row['estado'] == "Entregado") {
+        $state = "Libre";
+      }
+
+      $info = [
+        "idLibro" => $idLibro,
+        "estado" => $state,
+      ];
+
+      $updateState = BookModel::updateStateBookModel($info);
+
+      if($updateState->rowCount() == 1) {
+        $message = MainModel::alertContent("recargar", "Estado Actualizado", "Ud. ha marcado esta solicitud como ENTREGADO.", "success");
+      } else {
+        $message = MainModel::alertContent("simple", "Algo salio mal.", "No hemos podido actualizar el estado del libro.", "error");
+      }
+
+      echo json_encode($message);
+    }
   }

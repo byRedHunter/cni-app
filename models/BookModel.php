@@ -28,4 +28,16 @@
 
       return $query;
     }
+
+    // editar estado del documento
+    protected static function updateStateBookModel($datos) {
+      $query = MainModel::connect()->prepare("UPDATE libro SET estado = :estado WHERE idLibro = :idLibro");
+
+      $query->bindParam(":estado", $datos['estado']);
+      $query->bindParam(":idLibro", $datos['idLibro']);
+
+      $query->execute();
+
+      return $query;
+    }
   }
