@@ -1,3 +1,12 @@
+<?php
+	// si ingresa una persona de desk
+	if($_SESSION['privilegio'] == 2) {
+		echo $loginController->forceCloseSessionController();
+
+		exit();
+	}
+?>
+
 <div class="full-box page-header">
 	<h3 class="text-left">
 		<i class="fas fa-book fa-fw"></i> &nbsp; RESERVACION DE LIBRO
@@ -26,118 +35,14 @@
 </div>
 
  <div class="container-fluid">
-	<div class="table-responsive">
-		<table class="table table-dark table-sm">
-			<thead>
-				<tr class="text-center roboto-medium">
-					<th>#</th>
-					<th><span class="text-table">asdfgasd</span>TITULO<span class="text-table">asdfgasd</span></th>
-					<th>CATEGORIA</th>
-					<th>ESTADO</th>
-					<th>SOLICITANTE</th>
-					<th>DNI</th>
-					<th>NOMBRE</th>
-					<th>EMAIL</th>
-					<th>CELULAR</th>
-					<th>FECHA RECOJO</th>
-					<th>FECHA DEVOL.</th>
-					<th>ACTUALIZAR</th>
-					<th>ELIMINAR</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="text-center" >
-					<td>1</td>
-					<td style="">Aunque tenga miedo hágalo igual</td>
-					<td><span class="badge badge-dark">Otro</span></td>
-					<td><span class="badge badge-success">Libre</span></td>
-					<td><span class="badge badge-primary">Estudiante</span></td>
-					<td>45201225</td>
-					<td>Martin Gutierrez</td>
-					<td>martin.gutierrez@gmail.com</td>
-					<td>964587858</td>
-					<td>25-06-2021</td>
-					<td>30-06-2021</td>
-					<td>
-						<a href="<?php echo SERVERURL; ?>book-update" class="btn btn-success">
-							<i class="fas fa-sync-alt"></i>	
-						</a>
-					</td>
-					<td>
-						<form action="">
-							<button type="button" class="btn btn-warning">
-									<i class="far fa-trash-alt"></i>
-							</button>
-						</form>
-					</td>
-				</tr>
-				
-				<tr class="text-center" >
-					<td>2</td>
-					<td>Aunque tenga miedo hágalo igual</td>
-					<td><span class="badge badge-info">Secundaria</span></td>
-					<td><span class="badge badge-success">Libre</span></td>
-					<td><span class="badge badge-primary">Estudiante</span></td>
-					<td>45201225</td>
-					<td>Martin Gutierrez</td>
-					<td>martin.gutierrez@gmail.com</td>
-					<td>964587858</td>
-					<td>25-06-2021</td>
-					<td>30-06-2021</td>
-					<td>
-						<a href="<?php echo SERVERURL; ?>book-update" class="btn btn-success">
-							<i class="fas fa-sync-alt"></i>	
-						</a>
-					</td>
-					<td>
-						<form action="">
-							<button type="button" class="btn btn-warning">
-									<i class="far fa-trash-alt"></i>
-							</button>
-						</form>
-					</td>
-				</tr>
-				
-				<tr class="text-center" >
-					<td>3</td>
-					<td>Aunque tenga miedo hágalo igual</td>
-					<td><span class="badge badge-success">Primaria</span></td>
-					<td><span class="badge badge-success">Libre</span></td>
-					<td><span class="badge badge-info">Profesor</span></td>
-					<td>45201225</td>
-					<td>Martin Gutierrez</td>
-					<td>martin.gutierrez@gmail.com</td>
-					<td>964587858</td>
-					<td>25-06-2021</td>
-					<td>30-06-2021</td>
-					<td>
-						<a href="<?php echo SERVERURL; ?>book-update" class="btn btn-success">
-							<i class="fas fa-sync-alt"></i>	
-						</a>
-					</td>
-					<td>
-						<form action="">
-							<button type="button" class="btn btn-warning">
-									<i class="far fa-trash-alt"></i>
-							</button>
-						</form>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+	<?php
+		require_once "./controllers/libraryController.php";
+		$lc = new LibraryController();
 
-	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-			<li class="page-item disabled">
-				<a class="page-link" href="#" tabindex="-1">Previous</a>
-			</li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item">
-				<a class="page-link" href="#">Next</a>
-			</li>
-		</ul>
-	</nav>
+		$numPage = isset($urlArray[1]) ? $urlArray[1] : 1;
+		$numPage = $numPage == "" ? 1 : $numPage;
+		$secPage = $urlArray[0];
+
+		echo $lc->paginatorLibraryController($numPage, ROWSTABLE, $secPage);
+	?>
 </div>

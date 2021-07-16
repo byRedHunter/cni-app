@@ -167,4 +167,124 @@
 
       return $query;
     }
+
+    // paginacion de solicitudes
+    public function paginatorLibraryController($page, $registers, $url) {
+      $page = MainModel::clearString($page);
+      $registers = MainModel::clearString($registers);
+
+      $url = MainModel::clearString($url);
+      $url = SERVERURL . $url . "/";
+
+      $table = "";
+
+      $page = (isset($page) && $page > 0) ? (int)$page : 1;
+      $start = ($page > 0) ? (($page * $registers) - $registers) : 0;
+
+      // todos
+      $query = "SELECT SQL_CALC_FOUND_ROWS sl.idSolicitante, sl.tipoSolicitante, sl.fechaRecojo, sl.fechaDevolucion, sl.codigo, s.dni, s.nombre, s.apellido, s.email, s.celular, l.idLibro, l.titulo, l.categoria, l.estado  FROM solicitud_libro as sl INNER JOIN solicitante as s ON sl.idSolicitante = s.idSolicitante INNER JOIN libro as l ON sl.idLibro = l.idLibro ORDER BY sl.fechaRecojo DESC LIMIT $start, $registers";
+      
+
+      $connection = MainModel::connect();
+
+      $data = $connection->query($query);
+      $data = $data->fetchAll();
+
+      $total = $connection->query("SELECT FOUND_ROWS()");
+      $total = (int)$total->fetchColumn();
+      
+      $numPages = ceil($total / $registers);
+
+      $table .= '
+        <div class="table-responsive">
+          <table class="table table-dark table-sm">
+            <thead>
+              <tr class="text-center roboto-medium">
+                <th>#</th>
+                <th>CODIGO</th>
+                <th>
+                  <span class="text-table">lskjlsdjfksdjfk</span>TITULO<span class="text-table">lskjlsdjfksdjfk</span>
+                </th>
+                <th>CATEGORIA</th>
+                <th>ESTADO</th>
+                <th>SOLICITANTE</th>
+                <th>DNI</th>
+                <th>EMAIL</th>
+                <th>CELULAR</th>
+                <th>TIPO</th>
+                <th><span class="text-table">ls</span>RECOJO<span class="text-table">ls</span></th>
+                <th>DEVOLUCION</th>
+                <th>ENTREGAR</th>
+              </tr>
+            </thead>
+            <tbody>';
+      
+      if($total > 0 && $page <= $numPages) {
+        $counter = $start + 1;
+        $regInit = $start + 1;
+
+        foreach ($data as $row) {
+          $tipoSolicitante = $row['tipoSolicitante'] == 1 ? 'Estudiante' : 'Profesor';
+          $classes = CLASES[$row['tipoSolicitante']];
+
+          $classState = ['Libre' => 'success', 'Reservado' => 'warning', 'Entregado' => 'dark'];
+
+          $state = $row['estado'] != 'Reservado' ? 'disabled' : null;
+
+          $table .= '
+          <tr class="text-center" >
+            <td>'.$counter.'</td>
+            <td>'.$row['codigo'].'</td>
+            <td>'.$row['titulo'].'</td>
+            <td>'.$row['categoria'].'</td>
+            <td><span class="badge badge-'.$classState[$row['estado']].'">'.$row['estado'].'</span></td>
+            <td>'.$row['nombre'] . ' ' . $row['apellido'].'</td>
+            <td>'.$row['dni'].'</td>
+            <td>'.$row['email'].'</td>
+            <td>'.$row['celular'].'</td>
+            <td><span class="badge badge-'.$classes.'">'.$tipoSolicitante.'</span></td>
+            <td>'.$row['fechaRecojo'].'</td>
+            <td>'.$row['fechaDevolucion'].'</td>
+            <td>
+              <form class="formAjax" method="POST" data-form="update" action="'.SERVERURL.'ajax/bookAjax.php">
+                <input type="hidden" name="id-libro" value="'.MainModel::encryption($row['idLibro']).'" />
+                <button type="submit" class="btn btn-warning" '.$state.'>
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+              </form>
+            </td>
+          </tr>';
+          
+          $counter++;
+        }
+
+        $regFinal = $counter - 1;
+      } else {
+        if($total > 0) {
+          $table .= '
+              <tr class="text-center">
+                <td colspan="10" class="text-center py-3">
+                  <a href="'.$url.'" class="btn btn-raised btn-primary btn-sm">Haga clic aca para recargar el listado.</a>
+                </td>
+              </tr>';
+        } else {
+          $table .= '
+              <tr>
+                <td colspan="10" class="text-center text-primary font-weight-bold py-4" >No hay registros en el sistema</td>
+              </tr>';
+        }
+      }
+      $table .= '
+            </tbody>
+          </table>
+        </div>';
+
+      if($total > 0 && $page <= $numPages) {
+        $table .= '<p class="text-right">Mostrando usuarios '.$regInit.' al '.$regFinal.' de un total de '.$total.'</p>';
+
+        $table .= MainModel::paginationTables($page, $numPages, $url, BUTTONSPAGINATOR);
+      }
+
+      return $table;
+    }
   }
