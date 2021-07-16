@@ -246,7 +246,7 @@
           $table .= '
           <tr class="text-center" >
             <td>'.$counter.'</td>
-            <td>'.$row['codigo'].'</td>
+            <td class="font-weight-bold">'.$row['codigo'].'</td>
             <td>'.$row['asunto'].'</td>
             <td><span class="badge badge-'.$classes.'">'.$tipoDocumento.'</span></td>
             <td>'.$row['fecha'].'</td>

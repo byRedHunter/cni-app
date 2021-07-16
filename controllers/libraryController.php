@@ -232,9 +232,9 @@
           $state = $row['estado'] != 'Reservado' ? 'disabled' : null;
 
           $table .= '
-          <tr class="text-center" >
+          <tr class="text-center">
             <td>'.$counter.'</td>
-            <td>'.$row['codigo'].'</td>
+            <td class="font-weight-bold">'.$row['codigo'].'</td>
             <td>'.$row['titulo'].'</td>
             <td>'.$row['categoria'].'</td>
             <td><span class="badge badge-'.$classState[$row['estado']].'">'.$row['estado'].'</span></td>
