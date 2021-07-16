@@ -43,7 +43,7 @@
 		if($userInfo->rowCount() == 1) {
 			$row = $userInfo->fetch();
 	?>
-	<form action="<?php echo SERVERURL; ?>ajax/userAjax.php" data-set="update" class="form-neon formAjax" method="POST" autocomplete="off">
+	<form action="<?php echo SERVERURL; ?>ajax/userAjax.php" data-form="update" class="form-neon formAjax" method="POST" autocomplete="off">
 		<input type="hidden" name="usuario-id-up" value="<?php echo $urlArray[1] ?>">
 	
 		<fieldset>

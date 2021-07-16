@@ -40,4 +40,30 @@
 
       return $query;
     }
+
+    // obtener datos del usuario
+    protected static function getBooksModel($idLibro) {
+      $query = MainModel::connect()->prepare("SELECT * FROM libro WHERE idLibro = :idLibro");
+
+      $query->bindParam(":idLibro", $idLibro);
+
+      $query->execute();
+
+      return $query;
+    }
+
+    // update user
+    protected static function updateBookModel($datos) {
+      $query = MainModel::connect()->prepare("UPDATE libro SET titulo = :titulo, autor = :autor, serie = :serie, categoria = :categoria WHERE idLibro = :idLibro");
+
+      $query->bindParam(":titulo", $datos['titulo']);
+      $query->bindParam(":autor", $datos['autor']);
+      $query->bindParam(":serie", $datos['serie']);
+      $query->bindParam(":categoria", $datos['categoria']);
+      $query->bindParam(":idLibro", $datos['idLibro']);
+
+      $query->execute();
+
+      return $query;
+    }
   }

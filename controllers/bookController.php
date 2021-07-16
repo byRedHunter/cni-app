@@ -229,4 +229,118 @@
 
       return $table;
     }
+
+    // obtener libros
+    public function getBooksController($idLibro) {
+      $idLibro = MainModel::decryption($idLibro);
+      $idLibro = MainModel::clearString($idLibro);
+
+      return BookModel::getBooksModel($idLibro);
+    }
+
+    // update book
+    public function updateBookController() {
+      $idLibro = MainModel::decryption($_POST['libro-id-up']);
+      $idLibro = MainModel::clearString($idLibro);
+      
+      // comprobamos libro en la DB
+      $checkBook = MainModel::executeSimpleQuery("SELECT * FROM libro WHERE idLibro = '$idLibro'");
+
+      if($checkBook->rowCount() <= 0) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No hemos encontrado el libro en el sistema.", "error"));
+
+        exit();
+      } else {
+        $row = $checkBook->fetch();
+      }
+
+      $titulo = MainModel::clearString($_POST['libro-titulo-act']);
+      $serie = MainModel::clearString($_POST['libro-serie-act']);
+      $categoria = MainModel::clearString($_POST['libro-categoria-act']);
+
+      $autor = MainModel::clearString($_POST['libro-autor-act']);
+
+      $usuarioAdmin = MainModel::clearString($_POST['usuario-admin']);
+      $claveAdmin = MainModel::clearString($_POST['clave-admin']);
+
+      //comprobamos campos vacios obligatorios
+      if($titulo == "" || $autor == "" || $serie == "" || $categoria == "" || $usuarioAdmin == "" || $claveAdmin == "") {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No has llenado todos los campos obligatorios.", "error"));
+
+        exit();
+      }
+
+      // verificar integridad de los datos
+      if(MainModel::verifyInfo("[0-9a-zA-ZáéíóúÁÉÍÓÚñÑ\22 ]{5,150}", $titulo)) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El TITULO no coincide con el formato solicitado.", "error"));
+
+        exit();
+      }
+
+      if(MainModel::verifyInfo("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{10,100}", $autor)) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El AUTOR no coincide con el formato solicitado.", "error"));
+
+        exit();
+      }
+
+      if(MainModel::verifyInfo("[a-zA-Z0-9$@.-]{7,100}", $serie)) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "La SERIE no coincide con el formato solicitado.", "error"));
+
+        exit();
+      }
+
+      if(MainModel::verifyInfo("[0-9a-zA-ZáéíóúÁÉÍÓÚñÑ\22]{5,15}", $categoria)) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "La CATEGORIA no coincide con el formato solicitado.", "error"));
+
+        exit();
+      }
+
+      if(MainModel::verifyInfo("[a-zA-Z0-9]{5,35}", $usuarioAdmin)) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Tu NOMBRE DE USUARIO no coincide con el formato solicitado.", "error"));
+
+        exit();
+      }
+
+      if(MainModel::verifyInfo("[a-zA-Z0-9$@.-]{7,100}", $claveAdmin)) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Tu CLAVE no coincide con el formato solicitado.", "error"));
+
+        exit();
+      }
+      $claveAdmin = MainModel::encryption($claveAdmin);
+
+      // comporbamos credenciales para actualizar
+      session_start(['name' => NAMESESSION]);
+      if($_SESSION['privilegio'] == 2) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No tienes los permisos necesarios para realizar esta operacion.", "error"));
+
+        exit();
+      }
+
+      $checkAccount = MainModel::executeSimpleQuery("SELECT idUsuario FROM usuario WHERE username = '$usuarioAdmin' AND clave = '$claveAdmin'");
+
+      if($checkAccount->rowCount() <= 0) {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Nombre y clave del administrador no es valido.", "error"));
+
+        exit();
+      }
+
+      // datos para actualizar
+      $bookInfo = [
+        "titulo" => $titulo,
+        "autor" => $autor,
+        "serie" => $serie,
+        "categoria" => $categoria,
+        "idLibro" => $idLibro,
+      ];
+      // enviamos la informacion al modelo
+      $updateBook = BookModel::updateBookModel($bookInfo);
+
+      if($updateBook->rowCount() == 1) {
+        $message = MainModel::alertContent("recargar", "Libro Actualizado", "Los datos del libro han sido actualizados con exito.", "success");
+      } else {
+        $message = MainModel::alertContent("simple", "Algo salio mal.", "No hemos podido actualizar los datos del libro.", "error");
+      }
+
+      echo json_encode($message);
+    }
   }
