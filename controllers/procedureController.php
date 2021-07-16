@@ -191,15 +191,15 @@
       // si hay termino de busqueda
       if(isset($search) && $search != "") {
         // hay un termino
-        $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.asunto, r.tipoDocumento, r.idRecepcion, r.fecha, r.estado, r.archivo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante WHERE r.asunto LIKE '%$search%' OR r.fecha LIKE '%$search%' ORDER BY r.fecha DESC LIMIT $start, $registers";
+        $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.asunto, r.tipoDocumento, r.idRecepcion, r.fecha, r.estado, r.archivo, r.codigo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante WHERE r.asunto LIKE '%$search%' OR r.fecha LIKE '%$search%' OR r.codigo LIKE '%$search%' OR s.dni LIKE '%$search%' OR s.nombre LIKE '%$search%' OR s.apellido LIKE '%$search%' ORDER BY r.fecha DESC LIMIT $start, $registers";
       } else {
         // que tipo de busqueda es
         if($type == "recientes") {
           // recientes
-          $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.idRecepcion, r.asunto, r.tipoDocumento, r.fecha, r.estado, r.archivo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante WHERE r.fecha <= NOW() AND r.fecha >= date_add(NOW(), INTERVAL -1 DAY) ORDER BY r.fecha DESC LIMIT $start, $registers";
+          $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.idRecepcion, r.asunto, r.tipoDocumento, r.fecha, r.estado, r.archivo, r.codigo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante WHERE r.fecha <= NOW() AND r.fecha >= date_add(NOW(), INTERVAL -1 DAY) ORDER BY r.fecha DESC LIMIT $start, $registers";
         } else {
           // todos
-          $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.idRecepcion, r.asunto, r.tipoDocumento, r.fecha, r.estado, r.archivo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante ORDER BY r.fecha DESC LIMIT $start, $registers";
+          $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.idRecepcion, r.asunto, r.tipoDocumento, r.fecha, r.estado, r.archivo, r.codigo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante ORDER BY r.fecha DESC LIMIT $start, $registers";
         }
       }
 
@@ -219,6 +219,7 @@
             <thead>
               <tr class="text-center roboto-medium">
                 <th>#</th>
+                <th>CODIGO</th>
                 <th>ASUNTO</th>
                 <th>TIPO</th>
                 <th>FECHA</th>
@@ -245,6 +246,7 @@
           $table .= '
           <tr class="text-center" >
             <td>'.$counter.'</td>
+            <td>'.$row['codigo'].'</td>
             <td>'.$row['asunto'].'</td>
             <td><span class="badge badge-'.$classes.'">'.$tipoDocumento.'</span></td>
             <td>'.$row['fecha'].'</td>

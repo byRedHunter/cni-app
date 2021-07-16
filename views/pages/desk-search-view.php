@@ -1,9 +1,19 @@
+<?php
+	// si ingresa una persona de biblioteca
+	if($_SESSION['privilegio'] == 3) {
+		echo $loginController->forceCloseSessionController();
+
+		exit();
+	}
+?>
+
 <div class="full-box page-header">
 	<h3 class="text-left">
-		<i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR DOCUMENTO POR FECHA
+		<i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR DOCUMENTO
 	</h3>
 	<p class="text-justify">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia fugiat est ducimus inventore, repellendus deserunt cum aliquam dignissimos, consequuntur molestiae perferendis quae, impedit doloribus harum necessitatibus magnam voluptatem voluptatum alias!
+		En esta seccion usted puede buscar documentos, por los siguientes requerimientos: por asunto, por la fecha, por el codigo del documento, o el dni, nombre, apellido del solicitante.
+		Cabe resaltar que la fecha debe de tener el siguiente formato <strong>aaaa-mm-dd</strong> es decir <strong>año-mes-dia</strong>, un ejemplo seria <strong>2021-07-05</strong>.
 	</p>
 </div>
 
@@ -16,28 +26,26 @@
 			<a href="<?php echo SERVERURL; ?>desk-list"><i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; Todos</a>
 		</li>
 		<li>
-			<a class="active" href="<?php echo SERVERURL; ?>desk-search"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; BUSCAR POR FECHA</a>
+			<a class="active" href="<?php echo SERVERURL; ?>desk-search"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; BUSCAR DOCUMENTO</a>
 		</li>
 	</ul>
 </div>
 
+<?php
+	if(!isset($_SESSION['busqueda-desk']) && empty($_SESSION['busqueda-desk'])) {
+?>
 <div class="container-fluid">
-	<form class="form-neon" action="">
+	<form class="form-neon formAjax" action="<?php echo SERVERURL; ?>ajax/searchAjax.php" method="POST" data-form="default" autocomplete="off">
 		<input type="hidden" name="modulo" value="desk">
 		<div class="container-fluid">
 			<div class="row justify-content-md-center">
-				<div class="col-12 col-md-4">
+				<div class="col-12 col-md-6">
 					<div class="form-group">
-						<label for="busqueda_inicio_prestamo" >Fecha inicial (día/mes/año)</label>
-						<input type="date" class="form-control" name="fecha-inicio" id="busqueda_inicio_prestamo" maxlength="30">
+						<label for="inputSearch" class="bmd-label-floating">¿Qué documento estas buscando?</label>
+						<input type="text" class="form-control" name="busqueda-inicial" id="inputSearch" maxlength="30">
 					</div>
 				</div>
-				<div class="col-12 col-md-4">
-					<div class="form-group">
-						<label for="busqueda_final_prestamo" >Fecha final (día/mes/año)</label>
-						<input type="date" class="form-control" name="fecha-final" id="busqueda_final_prestamo" maxlength="30">
-					</div>
-				</div>
+
 				<div class="col-12">
 					<p class="text-center" style="margin-top: 40px;">
 						<button type="submit" class="btn btn-raised btn-info"><i class="fas fa-search"></i> &nbsp; BUSCAR</button>
@@ -47,17 +55,19 @@
 		</div>
 	</form>
 </div>
+<?php } else { ?>
 <div class="container-fluid">
-	<form action="">
+	<form class="formAjax" action="<?php echo SERVERURL; ?>ajax/searchAjax.php" method="POST" data-form="search" autocomplete="off">
 		<input type="hidden" name="modulo" value="desk">
 		<input type="hidden" name="eliminar-busqueda" value="eliminar">
 		<div class="container-fluid">
 			<div class="row justify-content-md-center">
 				<div class="col-12 col-md-6">
 					<p class="text-center" style="font-size: 20px;">
-						Fecha de busqueda: <strong>01/01/2020 &nbsp; a &nbsp; 01/01/2020</strong>
+						Resultados de la busqueda <strong>“<?php echo $_SESSION['busqueda-desk'] ?>”</strong>
 					</p>
 				</div>
+
 				<div class="col-12">
 					<p class="text-center" style="margin-top: 20px;">
 						<button type="submit" class="btn btn-raised btn-danger"><i class="far fa-trash-alt"></i> &nbsp; ELIMINAR BÚSQUEDA</button>
@@ -67,82 +77,17 @@
 		</div>
 	</form>
 </div>
+
 <div class="container-fluid">
-	<div class="table-responsive">
-		<table class="table table-dark table-sm">
-			<thead>
-				<tr class="text-center roboto-medium">
-					<th>#</th>
-					<th><span class="text-table">asdfgfsdf</span>ASUNTO<span class="text-table">asdfgfsdf</span></th>
-					<th>TIPO</th>
-					<th>FECHA</th>
-					<th><span class="text-table">asdfgfsdf</span>SOLICITANTE<span class="text-table">asdfgfsdf</span></th>
-					<th>EMAIL</th>
-					<th>CELULAR</th>
-					<th>ESTADO</th> <!-- NUEVO - RESPODIDO -->
-					<th>DOCUMENTO</th>
-					<th>RESPONDIDO</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="text-center" >
-					<td>1</td>
-					<td>Constancia de Estudios</td>
-					<td>Solicitud</td>
-					<td>30/06/2021</td>
-					<td>Mario Guerra Fernandez</td>
-					<td>mario.guerra@gmail.com</td>
-					<td>965485785</td>
-					<td><span class="badge badge-primary">Nuevo</span></td>
-					<td>
-						<a href="#" class="btn btn-info">
-								<i class="fas fa-file-pdf"></i>	
-						</a>
-					</td>
-					<td>
-						<form action="">
-							<button type="button" class="btn btn-warning">
-									<i class="fas fa-sync-alt"></i>
-							</button>
-						</form>
-					</td>
-				</tr>
-				<tr class="text-center" >
-					<td>2</td>
-					<td>Constancia de Estudios</td>
-					<td>Solicitud</td>
-					<td>30/06/2021</td>
-					<td>Mario Guerra Fernandez</td>
-					<td>mario.guerra@gmail.com</td>
-					<td>965485785</td>
-					<td><span class="badge badge-info">Respondido</span></td>
-					<td>
-						<a href="#" class="btn btn-info">
-								<i class="fas fa-file-pdf"></i>	
-						</a>
-					</td>
-					<td>
-						<form action="">
-							<button type="button" class="btn btn-warning" disabled>
-									<i class="fas fa-sync-alt"></i>
-							</button>
-						</form>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-			<li class="page-item disabled">
-				<a class="page-link" href="#" tabindex="-1">Previous</a>
-			</li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item">
-				<a class="page-link" href="#">Next</a>
-			</li>
-		</ul>
-	</nav>
+	<?php
+		require_once "./controllers/procedureController.php";
+		$pc = new ProcedureController();
+
+		$numPage = isset($urlArray[1]) ? $urlArray[1] : 1;
+		$numPage = $numPage == "" ? 1 : $numPage;
+		$secPage = $urlArray[0];
+
+		echo $pc->paginatorProceduresController($numPage, ROWSTABLE, $_SESSION["privilegio"], $secPage, "todos", $_SESSION['busqueda-desk']);
+	?>
 </div>
+<?php } ?>

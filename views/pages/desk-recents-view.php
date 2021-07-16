@@ -1,3 +1,12 @@
+<?php
+	// si ingresa una persona de biblioteca
+	if($_SESSION['privilegio'] == 3) {
+		echo $loginController->forceCloseSessionController();
+
+		exit();
+	}
+?>
+
 <div class="full-box page-header">
 	<h3 class="text-left">
 		<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; DOCUMENTOS RECIENTES
@@ -16,7 +25,7 @@
 			<a href="<?php echo SERVERURL; ?>desk-list"><i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; Todos</a>
 		</li>
 		<li>
-			<a href="<?php echo SERVERURL; ?>desk-search"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; BUSCAR POR FECHA</a>
+			<a href="<?php echo SERVERURL; ?>desk-search"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; BUSCAR DOCUMENTO</a>
 		</li>
 	</ul>
 </div>

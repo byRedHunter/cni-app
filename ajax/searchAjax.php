@@ -35,7 +35,7 @@
       exit();
     }
 
-    if($modulo == "desk") {
+    if($modulo == "moduloConFecha") {
       $dateInit = "fecha-inicio-" . $modulo;
       $dateFinal = "fecha-final-" . $modulo;
 
