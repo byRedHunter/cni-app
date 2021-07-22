@@ -90,7 +90,8 @@ CREATE TABLE `solicitud_libro` (
   `fechaDevolucion` date NOT NULL,
   `idSolicitante` int(11) NOT NULL,
   `idLibro` int(11) NOT NULL,
-  `codigo` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+  `codigo` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `estado` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Reservado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -120,7 +121,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `dni`, `nombre`, `apellido`, `username`, `email`, `clave`, `privilegio`, `estado`) VALUES
-(1, '96548578', 'Red', 'Hunter', 'byredhunter', '', 'UFhzZmY5KzlWTitMUjc3RmVZcFp5dz09', 1, 'Activo');
+(1, '999999999', 'Root', 'Admin', 'rootadmin', '', 'UFhzZmY5KzlWTitMUjc3RmVZcFp5dz09', 1, 'Activo');
 
 --
 -- Índices para tablas volcadas
