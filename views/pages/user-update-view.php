@@ -168,7 +168,8 @@
 		<br><br><br>
 
 		<fieldset>
-			<p class="text-center">Para poder guardar los cambios en esta cuenta debe de ingresar su nombre de usuario y contraseña</p>
+			<legend style="margin-top: 40px;"><i class="fas fa-user"></i> &nbsp; Verificar Credenciales</legend>
+			<p class="text-left">Para poder guardar los cambios modificados debe de ingresar su nombre de usuario y contraseña con las que Ud. accedio al sistema.</p>
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12 col-md-6">

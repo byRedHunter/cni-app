@@ -182,7 +182,7 @@
       $start = ($page > 0) ? (($page * $registers) - $registers) : 0;
 
       // todos
-      $query = "SELECT SQL_CALC_FOUND_ROWS sl.idSolicitante, sl.tipoSolicitante, sl.fechaRecojo, sl.fechaDevolucion, sl.codigo, s.dni, s.nombre, s.apellido, s.email, s.celular, l.idLibro, l.titulo, l.categoria, l.estado  FROM solicitud_libro as sl INNER JOIN solicitante as s ON sl.idSolicitante = s.idSolicitante INNER JOIN libro as l ON sl.idLibro = l.idLibro ORDER BY l.estado DESC LIMIT $start, $registers";
+      $query = "SELECT SQL_CALC_FOUND_ROWS sl.idSolicitudLibro, sl.idSolicitante, sl.tipoSolicitante, sl.fechaRecojo, sl.fechaDevolucion, sl.codigo, sl.estado, s.dni, s.nombre, s.apellido, s.email, s.celular, l.idLibro, l.titulo, l.categoria  FROM solicitud_libro as sl INNER JOIN solicitante as s ON sl.idSolicitante = s.idSolicitante INNER JOIN libro as l ON sl.idLibro = l.idLibro ORDER BY sl.fechaRecojo DESC LIMIT $start, $registers";
       
 
       $connection = MainModel::connect();
@@ -246,7 +246,8 @@
             <td>'.$row['fechaRecojo'].'</td>
             <td>'.$row['fechaDevolucion'].'</td>
             <td>
-              <form class="formAjax" method="POST" data-form="update" action="'.SERVERURL.'ajax/bookAjax.php">
+              <form class="formAjax" method="POST" data-form="update" action="'.SERVERURL.'ajax/libraryAjax.php">
+                <input type="hidden" name="id-solicitud-libro" value="'.MainModel::encryption($row['idSolicitudLibro']).'" />
                 <input type="hidden" name="id-libro" value="'.MainModel::encryption($row['idLibro']).'" />
                 <button type="submit" class="btn btn-warning" '.$state.'>
                     <i class="fas fa-sync-alt"></i>
@@ -286,5 +287,32 @@
       }
 
       return $table;
+    }
+
+    // actualizar estado del libro y de la solicitud
+    public function updateState() {
+      $idLibro = MainModel::decryption($_POST['id-libro']);
+      $idLibro = MainModel::clearString($idLibro);
+
+      $idSolicitudLibro = MainModel::decryption($_POST['id-solicitud-libro']);
+      $idSolicitudLibro = MainModel::clearString($idSolicitudLibro);
+
+      if($idLibro == "" || $idSolicitudLibro == "") {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Usted esta intentando hacer daño al sistema, no lo haga.", "error"));
+
+        exit();
+      }
+
+      $updateStateBook = BookModel::updateStateBookModel(['idLibro' => $idLibro, 'estado' => 'Entregado']);
+      
+      $updateStateSolicitud = LibraryModel::updateStateSolicitudModel(['idSolicitudLibro' => $idSolicitudLibro, 'estado' => 'Entregado']);
+
+      if($updateStateBook->rowCount() == 1 && $updateStateSolicitud->rowCount() == 1) {
+        $message = MainModel::alertContent("recargar", "Estado Actualizado", "Ud. ha marcado esta solicitud como ENTREGADO.", "success");
+      } else {
+        $message = MainModel::alertContent("simple", "Algo salio mal.", "No hemos podido actualizar el estado del libro ni de la solicitud.", "error");
+      }
+
+      echo json_encode($message);
     }
   }

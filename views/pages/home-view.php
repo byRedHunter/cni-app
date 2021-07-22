@@ -3,7 +3,7 @@
     <i class="fab fa-dashcube fa-fw"></i> &nbsp; DASHBOARD
   </h3>
   <p class="text-justify">
-    Esta es la parte principal, desde aqui podra accder de forma rápida a donde quiere llegar, a demás ver ciertos datos interesantes. .
+    Bienvenidos al sistema CNI, desde aqui podra acceder de forma rápida a donde quiera llegar, a demás ver ciertos datos interesantes.
   </p>
 </div>
 

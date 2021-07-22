@@ -12,7 +12,7 @@
         <i class="fas fa-book fa-fw"></i> &nbsp; NUEVO LIBRO
     </h3>
     <p class="text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium quod harum vitae, fugit quo soluta. Molestias officiis voluptatum delectus doloribus at tempore, iste optio quam recusandae numquam non inventore dolor.
+        Complete todos los campos para registrar un nuevo libro.
     </p>
 </div>
 
@@ -42,19 +42,19 @@
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <label for="libro-titulo" class="bmd-label-floating">Titulo <small> (*)</small></label>
+                                <label for="libro-titulo" class="bmd-label-floating">Titulo <small>*</small></label>
                                 <input type="text" pattern="[0-9a-zA-ZáéíóúÁÉÍÓÚñÑ\22 ]{5,50}" class="form-control" name="libro-titulo-reg" id="libro-titulo" minlength="5" maxlength="50" required>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
 						    <div class="form-group">
-							    <label for="libro-serie" class="bmd-label-floating">Serie <small> (*)</small></label>
+							    <label for="libro-serie" class="bmd-label-floating">Serie <small>*</small></label>
 							    <input type="text" class="form-control" name="libro-serie-reg" id="libro-serie" pattern="[a-zA-Z0-9$@.-]{7,100}" minlength="7" maxlength="100" required="" >
 						    </div>
 					    </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group bmd-form-group is-filled">
-                                <label for="libro-categoria" class="bmd-label-floating">Categoria <small> (*)</small></label>
+                                <label for="libro-categoria" class="bmd-label-floating">Categoria <small>*</small></label>
                                 <input type="text" pattern="[0-9a-zA-ZáéíóúÁÉÍÓÚñÑ\22]{5,15}" class="form-control" name="libro-categoria-reg" id="libro-categoria" minlength="5" maxlength="50" required>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="libro-autor" class="bmd-label-floating">Autor <small> (*)</small></label>
+                                <label for="libro-autor" class="bmd-label-floating">Autor <small>*</small></label>
                                 <input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,35}" class="form-control" name="libro-autor-reg" id="libro-autor" maxlength="35" required>
                             </div>
                         </div>

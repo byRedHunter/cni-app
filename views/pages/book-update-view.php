@@ -13,7 +13,7 @@
 	</h3>
 
     <p class="text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium quod harum vitae, fugit quo soluta. Molestias officiis voluptatum delectus doloribus at tempore, iste optio quam recusandae numquam non inventore dolor.
+        Esta sección esta disponible para que Ud. haga los cambios necesarios en los datos de los libros.
     </p>
 </div>
 
@@ -75,6 +75,8 @@
                 </div>
             </fieldset>
 
+<br><br><br>
+
             <fieldset>
                 <legend><i class="fas fa-history"></i> &nbsp; Datos del autor</legend>
                 <div class="container-fluid">
@@ -92,7 +94,8 @@
             <br><br><br>
 
             <fieldset>
-			    <p class="text-center font-weight-bold">Para poder guardar los cambios de este libro usted debe de ingresar su nombre de usuario y contraseña</p>
+			    <legend style="margin-top: 40px;"><i class="fas fa-user"></i> &nbsp; Verificar Credenciales</legend>
+			    <p class="text-left">Para poder guardar los cambios modificados debe de ingresar su nombre de usuario y contraseña con las que Ud. accedio al sistema.</p>
 			    <div class="container-fluid">
 				    <div class="row">
                         <div class="col-12 col-md-6">

@@ -12,7 +12,7 @@
 		<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; TODOS LOS DOCUMENTOS
 	</h3>
 	<p class="text-justify">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia fugiat est ducimus inventore, repellendus deserunt cum aliquam dignissimos, consequuntur molestiae perferendis quae, impedit doloribus harum necessitatibus magnam voluptatem voluptatum alias!
+		En esta seccion se listaran todos los documentos registrados en el sistema, ahora cuando Ud. haya respondido la solictud debe de marcarlo como <strong>"Respondido"</strong> en la columna de <strong>"RESPONDIDO"</strong>.
 	</p>
 </div>
 

@@ -86,8 +86,47 @@
 		$numPage = isset($urlArray[1]) ? $urlArray[1] : 1;
 		$numPage = $numPage == "" ? 1 : $numPage;
 		$secPage = $urlArray[0];
+		$search = '';
 
-		echo $pc->paginatorProceduresController($numPage, ROWSTABLE, $_SESSION["privilegio"], $secPage, "todos", $_SESSION['busqueda-desk']);
+		switch($_SESSION['busqueda-desk']) {
+			case 'solicitud':
+			case 'Solicitud':
+			case 'SOLICITUD':
+				$search = '1';
+			break;
+
+			case 'oficio':
+			case 'oficio':
+			case 'oficio':
+				$search = '2';
+			break;
+
+			case 'carta':
+			case 'Carta':
+			case 'CARTA':
+				$search = '3';
+			break;
+
+			case 'memorandum':
+			case 'Memorandum':
+			case 'MEMORANDUM':
+				$search = '4';
+			break;
+
+			case 'otro':
+			case 'Otro':
+			case 'OTRO':
+				$search = '5';
+			break;
+			
+			default:
+				$search = $_SESSION['busqueda-desk'];
+		}
+
+		print_r($search);
+
+
+		echo $pc->paginatorProceduresController($numPage, ROWSTABLE, $_SESSION["privilegio"], $secPage, "todos", $search);
 	?>
 </div>
 <?php } ?>

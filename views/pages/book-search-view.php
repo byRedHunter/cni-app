@@ -13,7 +13,7 @@
 	</h3>
 
   <p class="text-justify">
-    Puede buscar los libros por autor, titulo, serie, categoria y estado del libro.
+    Puede buscar los libros por <strong>autor, titulo, serie, categoria y estado</strong> del libro.
   </p>
 </div>
 

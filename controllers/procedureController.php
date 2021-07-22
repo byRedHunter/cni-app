@@ -191,7 +191,7 @@
       // si hay termino de busqueda
       if(isset($search) && $search != "") {
         // hay un termino
-        $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.asunto, r.tipoDocumento, r.idRecepcion, r.fecha, r.estado, r.archivo, r.codigo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante WHERE r.asunto LIKE '%$search%' OR r.fecha LIKE '%$search%' OR r.codigo LIKE '%$search%' OR s.dni LIKE '%$search%' OR s.nombre LIKE '%$search%' OR s.apellido LIKE '%$search%' ORDER BY r.fecha DESC LIMIT $start, $registers";
+        $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.asunto, r.tipoDocumento, r.idRecepcion, r.fecha, r.estado, r.archivo, r.codigo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante WHERE r.asunto LIKE '%$search%' OR r.tipoDocumento = '$search' OR r.fecha = '$search' OR r.codigo = '$search' OR s.dni = '$search' OR s.nombre LIKE '%$search%' OR s.apellido LIKE '%$search%' ORDER BY r.fecha DESC LIMIT $start, $registers";
       } else {
         // que tipo de busqueda es
         if($type == "recientes") {

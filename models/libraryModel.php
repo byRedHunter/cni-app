@@ -16,4 +16,15 @@
 
       return $query;
     }
+
+    protected static function updateStateSolicitudModel($datos) {
+      $query = MainModel::connect()->prepare("UPDATE solicitud_libro SET estado = :estado WHERE idSolicitudLibro = :idSolicitudLibro");
+
+      $query->bindParam(":estado", $datos['estado']);
+      $query->bindParam(":idSolicitudLibro", $datos['idSolicitudLibro']);
+
+      $query->execute();
+
+      return $query;
+    }
   }
