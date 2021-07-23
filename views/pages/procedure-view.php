@@ -72,7 +72,7 @@
 
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <label for="mesa-file" class="bmd-label-floating">Archivo (sodo .pdf) *</label>
+                <label for="mesa-file" class="bmd-label-floating">Archivo (sodo .pdf .xlsx .docx) *</label>
                 <input type="file" name="solicitud-file[]">
               </div>
             </div>

@@ -123,9 +123,6 @@
 				$search = $_SESSION['busqueda-desk'];
 		}
 
-		print_r($search);
-
-
 		echo $pc->paginatorProceduresController($numPage, ROWSTABLE, $_SESSION["privilegio"], $secPage, "todos", $search);
 	?>
 </div>

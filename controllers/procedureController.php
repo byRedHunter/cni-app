@@ -68,9 +68,10 @@
         exit();
       }
 
-      // validar que el archivo solo sea .pdf
-      if(pathinfo($archivo['name'][0], PATHINFO_EXTENSION) != "pdf") {
-        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El ARCHIVO no coincide con el formato solicitado, recuerda que solo acepta archivos pdf.", "error"));
+      // validar que el archivo solo sea .pdf .docx .xlsx
+      $extentionFile = pathinfo($archivo['name'][0], PATHINFO_EXTENSION);
+      if($extentionFile != "pdf" && $extentionFile != "xlsx" && $extentionFile != "xls" && $extentionFile != "docx") {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El ARCHIVO no coincide con el formato solicitado, recuerda que solo acepta archivos pdf, word y excel", "error"));
 
         exit();
       }
@@ -110,7 +111,7 @@
       // obtenemos la ruta del archivo
       $fileContent = file_get_contents($archivo['tmp_name'][0]);
       $nameFile = uniqid();
-      $routeFile = "../views/assets/pdf/" . $nameFile . "." . pathinfo($archivo['name'][0], PATHINFO_EXTENSION);
+      $routeFile = "../views/assets/pdf/" . $nameFile . "." . $extentionFile;
 
       // guardamos el archivo en la carpeta pdf
       if(file_put_contents($routeFile, $fileContent)) {
@@ -118,7 +119,7 @@
         $recepcionInfo = [
           'asunto' => $asunto,
           'tipoDocumento' => $tipoDocumento,
-          'archivo' => $nameFile . ".pdf",
+          'archivo' => $nameFile . "." . $extentionFile,
           'idSolicitante' => $idSolicitante,
           'codigo' => MainModel::codeToRegister(),
         ];
@@ -242,6 +243,16 @@
           $classes = CLASES[$row['tipoDocumento']];
           $classState = ['Nuevo' => 'success', 'Respondido' => 'warning'];
           $state = $row['estado'] == 'Respondido' ? 'disabled' : null;
+          $typeFile = explode('.', $row['archivo']);
+          $clasFile = 'danger';
+          if($typeFile[1] == "docx") {
+            $typeFile[1] = 'word';
+            $clasFile = 'primary';
+          }
+          if($typeFile[1] == "xls" || $typeFile[1] == "xlsx") {
+            $typeFile[1] = 'excel';
+            $clasFile = 'success';
+          }
 
           $table .= '
           <tr class="text-center" >
@@ -255,8 +266,8 @@
             <td>'.$row['celular'].'</td>
             <td><span class="badge badge-'.$classState[$row['estado']].'">'.$row['estado'].'</span></td>
             <td>
-              <a href="'.SERVERURL.'views/assets/pdf/'.$row['archivo'].'" class="btn btn-info" target="_blank">
-                  <i class="fas fa-file-pdf"></i>	
+              <a href="'.SERVERURL.'views/assets/pdf/'.$row['archivo'].'" class="btn btn-'.$clasFile.'" target="_blank">
+                  <i class="fa fa-file-'.$typeFile[1].'"></i>	
               </a>
             </td>
             <td>
