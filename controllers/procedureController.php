@@ -13,13 +13,14 @@
       $apellido = MainModel::clearString($_POST['solicitud-apellido']);
       $email = MainModel::clearString($_POST['solicitud-email']);
       $celular = MainModel::clearString($_POST['solicitud-celular']);
+      $direccion = MainModel::clearString($_POST['solicitud-direccion']);
 
       $asunto = MainModel::clearString($_POST['solicitud-asunto']);
       $tipoDocumento = isset($_POST['solicitud-tipo-documento']) ? MainModel::clearString($_POST['solicitud-tipo-documento']) : "0";
       $archivo = $_FILES['solicitud-file'];
 
       // comprobamos campos vacios obligatorios
-      if($dni == "" || $nombre == "" || $apellido == "" || $email == "" || $celular == "" || $asunto == "" || $tipoDocumento == "0" || count($archivo) < 0) {
+      if($dni == "" || $nombre == "" || $apellido == "" || $email == "" || $celular == "" || $direccion == "" || $asunto == "" || $tipoDocumento == "0" || count($archivo) < 0) {
         echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No has completado todos los campos obligatorios.", "error"));
 
         exit();
@@ -70,10 +71,18 @@
 
       // validar que el archivo solo sea .pdf .docx .xlsx
       $extentionFile = pathinfo($archivo['name'][0], PATHINFO_EXTENSION);
-      if($extentionFile != "pdf" && $extentionFile != "xlsx" && $extentionFile != "xls" && $extentionFile != "docx") {
-        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "El ARCHIVO no coincide con el formato solicitado, recuerda que solo acepta archivos pdf, word y excel", "error"));
+      $sizeFile = $archivo['size'][0];
+      if($extentionFile != "pdf" && $extentionFile != "xlsx" && $extentionFile != "xls" && $extentionFile != "docx" && $extentionFile != 'png' && $extentionFile != 'jpg' && $extentionFile != 'jpeg') {
+        echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No se acepta ese tipo de archivo", "error"));
 
         exit();
+      }
+
+      if($extentionFile == 'png' || $extentionFile == 'jpg' || $extentionFile == 'jpeg') {
+        if($sizeFile > 1095729) {
+          echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "Su imagen es muy pesada.", "error"));
+          exit();
+        }
       }
 
       // datos a registrar
@@ -83,7 +92,8 @@
         "nombre" => $nombre,
         "apellido" => $apellido,
         "email" => $email,
-        "celular" => $celular
+        "celular" => $celular,
+        "direccion" => $direccion
       ];
       
       // vemos si ya existe el solicitante
@@ -92,7 +102,7 @@
         $row = $existSolicitante->fetch();
 
         // comparamos si los datos son iguales
-        if($nombre == $row['nombre'] && $apellido == $row['apellido'] && $email == $row['email'] && $celular == $row['celular']) {
+        if($nombre == $row['nombre'] && $apellido == $row['apellido'] && $email == $row['email'] && $celular == $row['celular'] && $direccion == $row['direccion']) {
           // son iguales, guardamos idSolicitante
           $idSolicitante = $row['idSolicitante'];
         } else {
@@ -152,7 +162,8 @@
           'name' => $row['nombre'],
           'lastName' => $row['apellido'],
           'email' => $row['email'],
-          'phone' => $row['celular']
+          'phone' => $row['celular'],
+          'direction' => $row['direccion']
         ];
       } else {
         $message = [
@@ -192,15 +203,15 @@
       // si hay termino de busqueda
       if(isset($search) && $search != "") {
         // hay un termino
-        $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.asunto, r.tipoDocumento, r.idRecepcion, r.fecha, r.estado, r.archivo, r.codigo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante WHERE r.asunto LIKE '%$search%' OR r.tipoDocumento = '$search' OR r.fecha = '$search' OR r.codigo = '$search' OR s.dni = '$search' OR s.nombre LIKE '%$search%' OR s.apellido LIKE '%$search%' ORDER BY r.fecha DESC LIMIT $start, $registers";
+        $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, s.direccion, r.asunto, r.tipoDocumento, r.idRecepcion, r.fecha, r.estado, r.archivo, r.codigo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante WHERE r.asunto LIKE '%$search%' OR r.tipoDocumento = '$search' OR r.fecha = '$search' OR r.codigo = '$search' OR s.dni = '$search' OR s.nombre LIKE '%$search%' OR s.apellido LIKE '%$search%' ORDER BY r.fecha DESC LIMIT $start, $registers";
       } else {
         // que tipo de busqueda es
         if($type == "recientes") {
           // recientes
-          $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.idRecepcion, r.asunto, r.tipoDocumento, r.fecha, r.estado, r.archivo, r.codigo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante WHERE r.fecha <= NOW() AND r.fecha >= date_add(NOW(), INTERVAL -1 DAY) ORDER BY r.fecha DESC LIMIT $start, $registers";
+          $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, s.direccion, r.idRecepcion, r.asunto, r.tipoDocumento, r.fecha, r.estado, r.archivo, r.codigo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante WHERE r.fecha <= NOW() AND r.fecha >= date_add(NOW(), INTERVAL -1 DAY) ORDER BY r.fecha DESC LIMIT $start, $registers";
         } else {
           // todos
-          $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, r.idRecepcion, r.asunto, r.tipoDocumento, r.fecha, r.estado, r.archivo, r.codigo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante ORDER BY r.fecha DESC LIMIT $start, $registers";
+          $query = "SELECT SQL_CALC_FOUND_ROWS s.nombre, s.apellido, s.email, s.celular, s.direccion, r.idRecepcion, r.asunto, r.tipoDocumento, r.fecha, r.estado, r.archivo, r.codigo FROM recepcion as r INNER JOIN solicitante as s ON r.idSolicitante = s.idSolicitante ORDER BY r.fecha DESC LIMIT $start, $registers";
         }
       }
 
@@ -227,6 +238,7 @@
                 <th>SOLICITANTE</th>
                 <th>EMAIL</th>
                 <th>CELULAR</th>
+                <th>DIRECCION</th>
                 <th>ESTADO</th>
                 <th>DOCUMENTO</th>
                 <th>RESPONDIDO</th>
@@ -246,12 +258,16 @@
           $typeFile = explode('.', $row['archivo']);
           $clasFile = 'danger';
           if($typeFile[1] == "docx") {
-            $typeFile[1] = 'word';
+            $typeFile[1] = 'file-word';
             $clasFile = 'primary';
           }
           if($typeFile[1] == "xls" || $typeFile[1] == "xlsx") {
-            $typeFile[1] = 'excel';
+            $typeFile[1] = 'file-excel';
             $clasFile = 'success';
+          }
+          if($typeFile[1] == "jpg" || $typeFile[1] == "jpeg" || $typeFile[1] == "png") {
+            $typeFile[1] = 'image';
+            $clasFile = 'info';
           }
 
           $table .= '
@@ -264,10 +280,11 @@
             <td>'.$row['nombre'] . ' ' . $row['apellido'].'</td>
             <td>'.$row['email'].'</td>
             <td>'.$row['celular'].'</td>
+            <td>'.$row['direccion'].'</td>
             <td><span class="badge badge-'.$classState[$row['estado']].'">'.$row['estado'].'</span></td>
             <td>
               <a href="'.SERVERURL.'views/assets/pdf/'.$row['archivo'].'" class="btn btn-'.$clasFile.'" target="_blank">
-                  <i class="fa fa-file-'.$typeFile[1].'"></i>	
+                  <i class="fa fa-'.$typeFile[1].'"></i>	
               </a>
             </td>
             <td>

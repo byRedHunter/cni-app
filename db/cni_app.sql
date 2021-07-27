@@ -70,7 +70,8 @@ CREATE TABLE `solicitante` (
   `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `apellido` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `celular` varchar(9) COLLATE utf8_unicode_ci NOT NULL
+  `celular` varchar(9) COLLATE utf8_unicode_ci NOT NULL,
+  `direccion` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -121,7 +122,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `dni`, `nombre`, `apellido`, `username`, `email`, `clave`, `privilegio`, `estado`) VALUES
-(1, '999999999', 'Root', 'Admin', 'rootadmin', '', 'UFhzZmY5KzlWTitMUjc3RmVZcFp5dz09', 1, 'Activo');
+(1, '999999999', 'Root', 'Root', 'rootroot', '', 'UFhzZmY5KzlWTitMUjc3RmVZcFp5dz09', 1, 'Activo');
 
 --
 -- Índices para tablas volcadas

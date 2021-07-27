@@ -78,6 +78,12 @@
                 <input type="text" pattern="[0-9]{9}" class="form-control" name="libro-celular" id="libro-celular" maxlength="9" minlength="9" required>
               </div>
             </div>
+					<div class="col-12 col-md-6">
+						<div class="form-group">
+							<label for="libro-direccion" class="bmd-label-floating">Dirección y Distrito</label>
+							<input type="text" class="form-control" name="libro-direccion" id="libro-direccion" pattern="[a-zA-Z0-9$@.- ]{7,100}"  minlength="7" maxlength="100" required="" >
+						</div>
+					</div>
           </div>
         </div>
       </fieldset>

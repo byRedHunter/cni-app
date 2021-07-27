@@ -15,6 +15,7 @@
       $apellido = MainModel::clearString($_POST['libro-apellido']);
       $email = MainModel::clearString($_POST['libro-email']);
       $celular = MainModel::clearString($_POST['libro-celular']);
+      $direccion = MainModel::clearString($_POST['libro-direccion']);
 
       $fechaRecojo = $_POST['libro-fecha-recojo'];
       $fechaDevol = $_POST['libro-fecha-devol'];
@@ -22,7 +23,7 @@
       $libroId = $_POST['libro-id-libro'];
 
       // comprobamos campos obligatorios
-      if($dni == "" || $nombre == "" || $apellido == "" || $email == "" || $celular == "" || $fechaRecojo == "" || $fechaDevol == "" || $tipoUsuario == "0" || $libroId == "") {
+      if($dni == "" || $nombre == "" || $apellido == "" || $email == "" || $celular == "" || $direccion == "" || $fechaRecojo == "" || $fechaDevol == "" || $tipoUsuario == "0" || $libroId == "") {
         echo json_encode(MainModel::alertContent("simple", "Algo salio mal", "No has completado todos los campos obligatorios.", "error"));
 
         exit();
@@ -83,6 +84,7 @@
         "apellido" => $apellido,
         "email" => $email,
         "celular" => $celular,
+        "direccion" => $direccion,
       ];
 
       $existSolicitante = SolicitanteModel::getSolicitanteModel(['dni' => $dni]);
@@ -94,7 +96,7 @@
         $idSolicitante = $row['idSolicitante'];
 
         // si son diferentes actualizamos
-        if($nombre != $row['nombre'] || $apellido != $row['apellido'] || $email != $row['email'] || $celular != $row['celular']) {
+        if($nombre != $row['nombre'] || $apellido != $row['apellido'] || $email != $row['email'] || $celular != $row['celular'] || $direccion != $row['direccion']) {
           SolicitanteModel::updateSolicitanteModel($solicitanteInfo);
         }
       } else {
@@ -182,7 +184,7 @@
       $start = ($page > 0) ? (($page * $registers) - $registers) : 0;
 
       // todos
-      $query = "SELECT SQL_CALC_FOUND_ROWS sl.idSolicitudLibro, sl.idSolicitante, sl.tipoSolicitante, sl.fechaRecojo, sl.fechaDevolucion, sl.codigo, sl.estado, s.dni, s.nombre, s.apellido, s.email, s.celular, l.idLibro, l.titulo, l.categoria  FROM solicitud_libro as sl INNER JOIN solicitante as s ON sl.idSolicitante = s.idSolicitante INNER JOIN libro as l ON sl.idLibro = l.idLibro ORDER BY sl.fechaRecojo DESC LIMIT $start, $registers";
+      $query = "SELECT SQL_CALC_FOUND_ROWS sl.idSolicitudLibro, sl.idSolicitante, sl.tipoSolicitante, sl.fechaRecojo, sl.fechaDevolucion, sl.codigo, sl.estado, s.dni, s.nombre, s.apellido, s.email, s.celular, s.direccion, l.idLibro, l.titulo, l.categoria  FROM solicitud_libro as sl INNER JOIN solicitante as s ON sl.idSolicitante = s.idSolicitante INNER JOIN libro as l ON sl.idLibro = l.idLibro ORDER BY sl.fechaRecojo DESC LIMIT $start, $registers";
       
 
       $connection = MainModel::connect();
@@ -211,6 +213,7 @@
                 <th>DNI</th>
                 <th>EMAIL</th>
                 <th>CELULAR</th>
+                <th>DIRECCION</th>
                 <th>TIPO</th>
                 <th><span class="text-table">ls</span>RECOJO<span class="text-table">ls</span></th>
                 <th>DEVOLUCION</th>
@@ -242,6 +245,7 @@
             <td>'.$row['dni'].'</td>
             <td>'.$row['email'].'</td>
             <td>'.$row['celular'].'</td>
+            <td>'.$row['direccion'].'</td>
             <td><span class="badge badge-'.$classes.'">'.$tipoSolicitante.'</span></td>
             <td>'.$row['fechaRecojo'].'</td>
             <td>'.$row['fechaDevolucion'].'</td>
